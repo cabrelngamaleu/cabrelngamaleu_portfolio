@@ -31,6 +31,14 @@ const AboutMe = () => {
             <span className="aboutRightLiSpan">Adresse:</span>
             Yaoundé, Cameroon
           </li>
+          <li className="aboutRightLi">
+            <span className="aboutRightLiSpan">Email:</span>
+            ncabrel@yahoo.fr
+          </li>
+          <li className="aboutRightLi">
+            <span className="aboutRightLiSpan">Téléphone:</span>
+            +237 695669921
+          </li>
         </ul>
       </div>
     </div>
