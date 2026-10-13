@@ -1,0 +1,49 @@
+{
+  "id": "FEAT-001",
+  "type": "feat",
+  "description": "Backend Foundation: Repository restructure to monorepo (client/ + server/), implement Express server with MongoDB models, JWT authentication, security middleware (Helmet, CORS, rate-limiter, Joi, mongo-sanitize, HPP), and all REST API endpoints (Projects, Blog, Messages, Analytics) with Cloudinary image upload and Nodemailer email notifications. This establishes the complete backend infrastructure.",
+  "status": "pending",
+  "steps": [
+    "1. Create client/ and server/ directories. Use git mv to move existing src/, public/, package.json, tailwind.config.js to client/ (preserves Git history). Create root package.json with npm workspaces and concurrently scripts. Create root .gitignore.",
+    "2. Create server/package.json with dependencies: express, mongoose, jsonwebtoken, bcrypt, helmet, cors, express-rate-limit, joi, multer, cloudinary, nodemailer, dotenv, express-mongo-sanitize, hpp. Dev deps: nodemon, jest, supertest, eslint, prettier.",
+    "3. Create server directory structure: config/ (db.js, cloudinary.js, env.js), middleware/ (auth.js, rateLimiter.js, errorHandler.js, validate.js, upload.js, security.js), models/ (Project.js, BlogPost.js, Message.js, User.js, Analytics.js), routes/ (auth.routes.js, projects.routes.js, blog.routes.js, messages.routes.js, analytics.routes.js), controllers/ (corresponding controllers), utils/ (sendEmail.js, generateToken.js), scripts/ (seedDb.js, createAdmin.js), server.js.",
+    "4. Implement all five Mongoose models with validation: Project (title, description, longDescription, technologies[], category enum, imageUrl, liveUrl, githubUrl, featured, order, timestamps), BlogPost (title, slug unique indexed, content markdown, excerpt, coverImage, tags[], category, published, timestamps), Message (name, email, message, read default false, timestamps), User (username unique, email unique, password bcrypt hashed in pre-save hook 12 rounds, role default 'admin', lastLogin, timestamps), Analytics (event enum ['page_view', 'project_click', 'contact_submit'], page, referrer, userAgent, timestamp).",
+    "5. Implement JWT authentication: auth.controller.js (login validates credentials generates JWT 24h expiration, changePassword verifies old password hashes new), generateToken.js (JWT sign with JWT_SECRET), auth middleware (verify JWT from Authorization header attach user to req.user). Write auth.routes.js. Create server/.env.example with all required vars (MONGODB_URI, JWT_SECRET, JWT_EXPIRE, CLOUDINARY_*, EMAIL_*, FRONTEND_URL, PORT).",
+    "6. Implement security middleware in security.js: Helmet for secure HTTP headers, CORS allowing only FRONTEND_URL origin, express-rate-limit 100 req/15min per IP, mongo-sanitize on all req.body/query/params, HPP prevention. Create validate.js middleware wrapping Joi schemas. Apply all in server.js before routes.",
+    "7. Implement Projects API in projects.controller.js and projects.routes.js: GET /api/projects (public list, filter by category/featured, sort by order), GET /api/projects/:id (public detail), POST /api/projects (admin auth required, Joi validation for title required, technologies array, category enum, URLs format, multer middleware for image file, cloudinary helper uploads to Cloudinary returns secure_url), PUT /api/projects/:id (admin), DELETE /api/projects/:id (admin). Create upload.js multer config and cloudinary.js config.",
+    "8. Implement Blog API in blog.controller.js and blog.routes.js: GET /api/blog (public list filter published=true only), GET /api/blog/:slug (public detail), POST /api/blog (admin, auto-generate slug from title using slugify package, Joi validation title/content/tags), PUT /api/blog/:id (admin), DELETE /api/blog/:id (admin). Install slugify package.",
+    "9. Implement Messages API in messages.controller.js and messages.routes.js: POST /api/messages (public contact form, Joi validation name/email/message, save to DB, sendEmail.js helper with nodemailer sends notification to admin using SMTP from env, stricter rate limit 10/15min per IP on this endpoint), GET /api/messages (admin list all sort by read status), PATCH /api/messages/:id/read (admin toggle read), DELETE /api/messages/:id (admin). Create sendEmail.js and templates/newMessageEmail.js HTML template.",
+    "10. Implement Analytics API in analytics.controller.js and analytics.routes.js: POST /api/analytics/event (public no auth, create document with event type validated enum, page, referrer, userAgent), GET /api/analytics/dashboard (admin, MongoDB aggregation pipeline for stats: total visits, visits by day/week/month, top pages, event counts).",
+    "11. Create errorHandler.js middleware (catches all errors, formats response with message/statusCode/stack in dev, logs errors). Create 404 handler for undefined routes. Complete server.js: connect MongoDB via db.js, apply security middleware, mount all route modules (/api/auth, /api/projects, /api/blog, /api/messages, /api/analytics), error handlers last. Create scripts/createAdmin.js to seed default admin user if User collection empty.",
+    "12. Write comprehensive Jest + Supertest tests in server/tests/: auth.test.js (test login valid/invalid credentials, test protected route access with/without token), projects.test.js (test GET public access, POST without auth expect 401, POST with auth and valid data expect 201, PUT/DELETE with auth, test image upload), blog.test.js (test slug auto-generation, test published filter, test getBySlug), messages.test.js (test POST creates message and email sent with mocked nodemailer, test GET requires auth, test markRead toggles status), analytics.test.js (test POST creates document, test GET dashboard aggregation). Configure jest.config.js with coverage thresholds minimum 70%."
+  ],
+  "acceptance_criteria": [
+    "Root package.json with npm workspaces configured, concurrently scripts for start:all, build:all, test:all work correctly",
+    "All existing files moved to client/ using git mv (verify with git status showing 'renamed' not 'deleted/added')",
+    "Server starts without errors on configured port, MongoDB connection confirmed in logs",
+    "All five Mongoose models create documents successfully in MongoDB (verify with seedDb.js script)",
+    "JWT authentication works: POST /api/auth/login with valid credentials returns token, protected routes reject requests without valid token (401)",
+    "Security middleware applied: rate limiting returns 429 after limit, CORS rejects unauthorized origins, Helmet headers present in responses (X-Content-Type-Options, X-Frame-Options visible in DevTools)",
+    "Projects API: GET /api/projects returns list, POST /api/projects with auth and image file uploads to Cloudinary and creates project with imageUrl, category filter works, order sorting works",
+    "Blog API: GET /api/blog returns only published posts, POST /api/blog auto-generates unique slug from title, GET /api/blog/:slug retrieves post",
+    "Messages API: POST /api/messages creates message and sends email notification (verify in email inbox), GET /api/messages requires auth, PATCH toggles read status, rate limiting works (11th request in 15min returns 429)",
+    "Analytics API: POST /api/analytics/event creates document, GET /api/analytics/dashboard returns aggregated stats (total visits, visits by day, top pages, event counts)",
+    "All backend tests pass with npm test in server/, coverage report shows ≥70% lines covered",
+    "server/.env.example includes all required environment variables with example values",
+    "Default admin user created by scripts/createAdmin.js (username: admin, email: admin@example.com, password hashed), login to /api/auth/login with these credentials succeeds"
+  ],
+  "verification": [
+    "Run npm run install:all from root, verify both client and server dependencies install without errors",
+    "Run git status after restructuring, confirm files show as 'renamed' not 'deleted/added'",
+    "Run npm run start:all from root, verify client starts on :3000 and server on :5000, check console logs confirm MongoDB connected",
+    "Run node server/scripts/seedDb.js, verify documents insert into MongoDB without errors, check MongoDB Atlas/Compass to confirm collections created",
+    "Run node server/scripts/createAdmin.js, verify admin user created, use Postman/Insomnia to POST /api/auth/login with admin credentials, verify 200 response with JWT token",
+    "Use Postman/Insomnia to test all API endpoints: verify GET /api/projects returns projects, POST /api/projects without Authorization header returns 401, POST /api/projects with valid token and multipart/form-data image uploads to Cloudinary, verify GET /api/blog filters unpublished posts, POST /api/messages sends email (check inbox), GET /api/analytics/dashboard returns stats",
+    "Test rate limiting: send 101 requests rapidly to any endpoint (bash loop or Postman runner), verify 101st request returns 429 Too Many Requests",
+    "Test CORS: send request from unauthorized origin (e.g., curl with Origin header not matching FRONTEND_URL), verify rejection",
+    "Inspect response headers in browser DevTools Network tab, confirm Helmet headers present: X-Content-Type-Options: nosniff, X-Frame-Options: DENY or SAMEORIGIN",
+    "Run npm test in server/, verify all tests pass, run npm test -- --coverage, verify coverage report shows ≥70% lines covered, open server/coverage/lcov-report/index.html to review coverage details"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

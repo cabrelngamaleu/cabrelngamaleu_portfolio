@@ -1,0 +1,12 @@
+{
+  "task_id": "task-portfolio-fullstack",
+  "task_description": "Refactor existing React 18 portfolio into full-stack application with Express backend, MongoDB, JWT authentication, admin dashboard, and CI/CD pipeline",
+  "status": "pending",
+  "feature_order": [
+    "FEAT-001",
+    "FEAT-002",
+    "FEAT-003",
+    "FEAT-004"
+  ],
+  "blocked_reason": null
+}

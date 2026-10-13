@@ -1,46 +1,29 @@
 {
-  "name": "newportfolio",
-  "version": "0.1.0",
+  "name": "cabrelngamaleu-portfolio-monorepo",
+  "version": "1.0.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.2.6",
-    "framer-motion": "^8.5.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^4.7.1",
-    "react-scripts": "5.0.1",
-    "react-simple-typewriter": "^5.0.1",
-    "tailwind-scrollbar": "^2.1.0",
-    "web-vitals": "^2.1.4"
-  },
+  "description": "Full-stack portfolio with React client and Express server",
+  "workspaces": [
+    "client",
+    "server"
+  ],
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "install:all": "npm install",
+    "start:client": "npm run start --workspace=client",
+    "start:server": "npm run dev --workspace=server",
+    "start:all": "concurrently \"npm run start:client\" \"npm run start:server\"",
+    "build:client": "npm run build --workspace=client",
+    "build:server": "npm run build --workspace=server",
+    "build:all": "npm run build:client && npm run build:server",
+    "test:client": "npm test --workspace=client",
+    "test:server": "npm test --workspace=server",
+    "test:all": "npm run test:client && npm run test:server"
   },
   "devDependencies": {
-    "tailwindcss": "^3.2.4"
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
   }
 }

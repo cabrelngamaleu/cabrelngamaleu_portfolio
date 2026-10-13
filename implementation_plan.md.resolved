@@ -1,0 +1,405 @@
+# Portfolio Full-Stack — Cabrel Ngamaleu
+
+Refonte complète du portfolio en application full-stack avec backend, dashboard admin, CI/CD et DevSecOps.
+
+---
+
+## 🏗️ Architecture Globale
+
+```mermaid
+graph TB
+    subgraph "Frontend (React)"
+        A[Portfolio Public] --> B[Hero / About / Skills / Projects / Contact]
+        C[Dashboard Admin] --> D[Gestion Projets / Blog / Analytics / Messages]
+    end
+
+    subgraph "Backend (Node.js + Express)"
+        E[REST API] --> F[Auth JWT]
+        E --> G[CRUD Projets]
+        E --> H[CRUD Blog]
+        E --> I[Messages Contact]
+        E --> J[Analytics API]
+        E --> K[Upload Images]
+    end
+
+    subgraph "Base de données (MongoDB)"
+        L[(Projects)]
+        M[(Blog Posts)]
+        N[(Messages)]
+        O[(User/Admin)]
+        P[(Analytics Events)]
+    end
+
+    subgraph "CI/CD & DevSecOps"
+        Q[GitHub Actions]
+        Q --> R[Lint + Tests]
+        Q --> S[SAST / Dependency Scan]
+        Q --> T[Docker Build]
+        Q --> U[Deploy]
+    end
+
+    B --> E
+    D --> E
+    E --> L & M & N & O & P
+```
+
+---
+
+## 📦 Stack Technique
+
+| Couche | Technologie | Justification |
+|--------|------------|---------------|
+| **Frontend** | React 18 + Tailwind CSS | Stack existante, on l'améliore |
+| **Backend** | Node.js + Express | Écosystème JS unifié |
+| **BDD** | MongoDB + Mongoose | Flexible pour du contenu dynamique |
+| **Auth** | JWT + bcrypt | Sécurisé, stateless |
+| **Upload** | Multer + Cloudinary | Stockage images cloud |
+| **Email** | Nodemailer | Notifications contact |
+| **CI/CD** | GitHub Actions | Natif au repo |
+| **Conteneurs** | Docker + Docker Compose | Déploiement reproductible |
+| **Sécurité** | Helmet, CORS, rate-limiter, OWASP ZAP | DevSecOps |
+
+---
+
+## 🎨 Frontend — Portfolio Public
+
+### Nouvelle structure de fichiers
+```
+src/
+├── components/
+│   ├── layout/        # Navbar, Footer, ScrollToTop
+│   ├── hero/          # HeroSection, ParticlesBackground
+│   ├── about/         # AboutSection, StatsCounter
+│   ├── skills/        # SkillsSection, SkillCircle, TechIcon
+│   ├── projects/      # ProjectsSection, ProjectCard, ProjectFilter
+│   ├── blog/          # BlogSection, BlogCard
+│   ├── contact/       # ContactSection, ContactForm
+│   └── common/        # SectionTitle, GlassCard, AnimatedButton
+├── pages/
+│   ├── Portfolio.jsx   # Page publique (toutes les sections)
+│   └── Dashboard/      # Pages admin (voir ci-dessous)
+├── hooks/              # useScrollSpy, useInView, useApi
+├── services/           # api.js (axios instance centralisée)
+├── context/            # AuthContext.jsx
+├── data/               # Données statiques fallback
+└── utils/              # helpers, validators
+```
+
+### Design Features
+- **Hero** : Texte gradient animé, particules CSS, photo avec border gradient rotatif
+- **Navbar** : Glassmorphism fixe, scroll-spy, hamburger mobile avec slide-in
+- **About** : Cards glassmorphism, compteurs animés (6+ ans, X projets, etc.)
+- **Skills** : Cercles SVG animés au scroll + icônes technos officielles
+- **Projets** : Cards 3D tilt, filtrage par catégorie, chargement depuis l'API
+- **Blog** : Cards avec image, date, tags, animations fade-in au scroll
+- **Contact** : Formulaire glassmorphism → envoi API → email notification
+- **Footer** : Liens sociaux, copyright, "Built with ❤️"
+
+---
+
+## 🔧 Backend — API REST
+
+### Structure du backend
+```
+server/
+├── config/
+│   ├── db.js           # Connexion MongoDB
+│   ├── cloudinary.js   # Config upload images
+│   └── env.js          # Variables d'environnement
+├── middleware/
+│   ├── auth.js         # Vérification JWT
+│   ├── rateLimiter.js  # Anti-spam
+│   ├── errorHandler.js # Gestion d'erreurs centralisée
+│   ├── validate.js     # Validation avec Joi
+│   └── upload.js       # Multer config
+├── models/
+│   ├── Project.js      # Schéma projet
+│   ├── BlogPost.js     # Schéma article
+│   ├── Message.js      # Schéma message contact
+│   ├── User.js         # Schéma admin
+│   └── Analytics.js    # Schéma événements
+├── routes/
+│   ├── auth.routes.js
+│   ├── projects.routes.js
+│   ├── blog.routes.js
+│   ├── messages.routes.js
+│   └── analytics.routes.js
+├── controllers/        # Logique métier par route
+├── utils/
+│   ├── sendEmail.js    # Nodemailer helper
+│   └── generateToken.js
+├── server.js           # Point d'entrée
+└── .env.example        # Template env vars
+```
+
+### Endpoints API
+
+```
+AUTH
+  POST   /api/auth/login          → Connexion admin (JWT)
+  POST   /api/auth/change-password → Modifier mot de passe
+
+PROJECTS
+  GET    /api/projects             → Liste projets (public)
+  GET    /api/projects/:id         → Détail projet (public)
+  POST   /api/projects             → Créer projet (admin)
+  PUT    /api/projects/:id         → Modifier projet (admin)
+  DELETE /api/projects/:id         → Supprimer projet (admin)
+
+BLOG
+  GET    /api/blog                 → Liste articles (public)
+  GET    /api/blog/:slug           → Détail article (public)
+  POST   /api/blog                 → Créer article (admin)
+  PUT    /api/blog/:id             → Modifier article (admin)
+  DELETE /api/blog/:id             → Supprimer article (admin)
+
+MESSAGES
+  POST   /api/messages             → Envoyer message (public)
+  GET    /api/messages             → Liste messages (admin)
+  PATCH  /api/messages/:id/read    → Marquer lu (admin)
+  DELETE /api/messages/:id         → Supprimer (admin)
+
+ANALYTICS
+  POST   /api/analytics/event      → Logger visite (public)
+  GET    /api/analytics/dashboard   → Stats agrégées (admin)
+```
+
+### Modèles MongoDB
+
+```javascript
+// Project
+{
+  title, description, longDescription,
+  technologies: [String],
+  category: "web" | "mobile" | "design" | "other",
+  imageUrl, liveUrl, githubUrl,
+  featured: Boolean,
+  order: Number,
+  createdAt, updatedAt
+}
+
+// BlogPost
+{
+  title, slug, content (markdown),
+  excerpt, coverImage,
+  tags: [String], category,
+  published: Boolean,
+  createdAt, updatedAt
+}
+
+// Message
+{
+  name, email, message,
+  read: Boolean,
+  createdAt
+}
+
+// Analytics
+{
+  event: "page_view" | "project_click" | "contact_submit",
+  page, referrer, userAgent,
+  createdAt
+}
+```
+
+---
+
+## 📊 Dashboard Admin
+
+### Pages du dashboard
+
+| Page | Fonctionnalités |
+|------|----------------|
+| **Login** | Authentification JWT, input glassmorphism |
+| **Vue d'ensemble** | Cartes stats (visites, messages, projets), graphiques Chart.js |
+| **Projets** | CRUD complet, drag & drop pour réordonner, upload images |
+| **Blog** | Éditeur Markdown live preview, gestion tags/catégories |
+| **Messages** | Inbox avec statut lu/non-lu, réponse rapide par email |
+| **Analytics** | Graphiques visites par jour/semaine/mois, pages populaires |
+| **Profil** | Modifier bio, photo, liens sociaux, infos personnelles |
+| **Paramètres** | Changer mot de passe, thème du dashboard, export données |
+
+### Suggestions bonus pour le dashboard
+- 🔔 **Notifications temps réel** : Badge sur l'icône messages quand nouveau message
+- 📱 **Dashboard responsive** : Utilisable sur mobile
+- 🌙 **Dark/Light mode** : Toggle pour le dashboard
+- 📤 **Export CSV** : Exporter les messages et analytics
+- 🏷️ **Système de tags** : Tags réutilisables pour projets et blog
+- 📸 **Galerie médias** : Bibliothèque d'images uploadées réutilisables
+- 📝 **Brouillons** : Sauvegarder des articles en brouillon
+
+---
+
+## 🔒 DevSecOps
+
+### Sécurité Backend
+```
+✅ Helmet.js          → HTTP headers sécurisés
+✅ CORS               → Origines autorisées seulement
+✅ Rate Limiter        → Max 100 req/15min par IP
+✅ Joi Validation      → Validation stricte des inputs
+✅ bcrypt             → Hash mot de passe (12 rounds)
+✅ JWT                → Tokens signés, expiration 24h
+✅ Sanitize           → mongo-sanitize contre injections NoSQL
+✅ HPP                → Protection pollution paramètres HTTP
+✅ .env               → Secrets JAMAIS dans le code
+```
+
+### CI/CD Pipeline (GitHub Actions)
+
+```mermaid
+graph LR
+    A[Push / PR] --> B[Install deps]
+    B --> C[ESLint + Prettier]
+    C --> D[Unit Tests Jest]
+    D --> E[npm audit]
+    E --> F[Snyk Security Scan]
+    F --> G{Branch?}
+    G -->|main| H[Docker Build]
+    H --> I[Push Image]
+    I --> J[Deploy]
+    G -->|other| K[Report Only]
+```
+
+### Fichiers CI/CD
+```
+.github/
+├── workflows/
+│   ├── ci.yml              # Lint + Test + Security scan sur chaque PR
+│   ├── cd.yml              # Build Docker + Deploy sur push main
+│   └── dependency-review.yml # Scan dépendances sur PR
+├── CODEOWNERS
+└── pull_request_template.md
+
+Dockerfile                  # Multi-stage build (frontend + backend)
+docker-compose.yml          # Dev local (app + MongoDB)
+docker-compose.prod.yml     # Production
+.dockerignore
+.env.example
+```
+
+### Pipeline détaillé `ci.yml`
+1. **Lint** : ESLint (frontend + backend) + Prettier check
+2. **Tests** : Jest (unit tests backend) + React Testing Library
+3. **Security** :
+   - `npm audit --audit-level=high`
+   - Snyk pour dépendances vulnérables
+   - Secret scanning (commitlint)
+4. **Build** : Vérifier que le build passe sans erreur
+5. **Coverage** : Rapport de couverture minimum 70%
+
+### Pipeline `cd.yml`
+1. Tout le CI passe ✅
+2. Docker build multi-stage
+3. Push image vers container registry
+4. Deploy (options : Railway, Render, VPS, ou AWS)
+
+---
+
+## 📁 Structure globale du projet
+
+```
+cabrelngamaleu_portfolio/
+├── client/                    # Frontend React
+│   ├── public/
+│   ├── src/
+│   ├── package.json
+│   ├── tailwind.config.js
+│   └── .env.example
+├── server/                    # Backend Express
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── utils/
+│   ├── server.js
+│   ├── package.json
+│   └── .env.example
+├── .github/workflows/         # CI/CD
+├── Dockerfile
+├── docker-compose.yml
+├── docker-compose.prod.yml
+├── .eslintrc.js
+├── .prettierrc
+├── jest.config.js
+├── README.md
+└── SECURITY.md
+```
+
+---
+
+## 🚀 Plan d'exécution par phases
+
+### Phase 1 — Fondations (Backend + BDD)
+- [ ] Restructurer le repo (client/ + server/)
+- [ ] Setup Express + MongoDB + Mongoose
+- [ ] Modèles de données
+- [ ] Auth JWT (login admin)
+- [ ] CRUD Projects API
+- [ ] CRUD Blog API
+- [ ] Messages API
+- [ ] Middleware sécurité (Helmet, CORS, rate-limit)
+
+### Phase 2 — Frontend Portfolio Public
+- [ ] Nouveau design system (tailwind config, index.css)
+- [ ] Navbar glassmorphism + scroll-spy
+- [ ] Hero section (particules, gradient text, typewriter)
+- [ ] About section (glassmorphism cards, compteurs)
+- [ ] Skills (cercles SVG animés)
+- [ ] Projects (cards dynamiques depuis API, filtrage)
+- [ ] Blog (chargement depuis API)
+- [ ] Contact (formulaire → API → email)
+- [ ] Footer + SEO meta tags
+
+### Phase 3 — Dashboard Admin
+- [ ] Page login
+- [ ] Layout dashboard (sidebar, header, main content)
+- [ ] Dashboard overview (Chart.js stats)
+- [ ] CRUD projets (formulaire + upload images)
+- [ ] CRUD blog (éditeur Markdown)
+- [ ] Inbox messages
+- [ ] Page profil/paramètres
+
+### Phase 4 — CI/CD & DevSecOps
+- [ ] Dockerfile multi-stage
+- [ ] docker-compose dev
+- [ ] GitHub Actions CI (lint, tests, security)
+- [ ] GitHub Actions CD (build + deploy)
+- [ ] .env.example, SECURITY.md, CODEOWNERS
+
+---
+
+## User Review Required
+
+> [!IMPORTANT]
+> **Hébergement** : Où souhaites-tu déployer ? Options :
+> - **Railway / Render** (gratuit/pas cher, simple)
+> - **VPS** (plus de contrôle, type OVH/Hetzner)
+> - **AWS / GCP** (professionnel mais plus complexe)
+
+> [!IMPORTANT]
+> **MongoDB** : Utiliser MongoDB Atlas (cloud, gratuit tier 512MB) ou MongoDB local via Docker ?
+
+> [!IMPORTANT]
+> **Cette refonte va remplacer tout le code existant**. L'ancienne version sera préservée dans l'historique Git. Confirmes-tu vouloir procéder ?
+
+---
+
+## Verification Plan
+
+### Automated Tests
+- Backend: Jest + Supertest pour chaque endpoint API
+- Frontend: React Testing Library pour les composants clés
+- `npm audit` + Snyk dans le CI
+
+### Browser Testing
+- Lancer Docker Compose et vérifier le portfolio public
+- Tester login + toutes les pages du dashboard
+- Tester le responsive (320px → 1920px)
+- Tester CRUD projets/blog complet
+
+### Security Testing
+- Tester les endpoints protégés sans token
+- Vérifier rate limiting
+- Vérifier les headers HTTP (Helmet)
