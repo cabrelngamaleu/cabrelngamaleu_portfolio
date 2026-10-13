@@ -1,70 +1,91 @@
-# Getting Started with Create React App
+# Portfolio Cabrel Ngamaleu
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Portfolio full-stack moderne avec React et Node.js.
 
-## Available Scripts
+## Structure du projet
 
-In the project directory, you can run:
+```
+cabrelngamaleu_portfolio/
+├── client/          # Application React (frontend)
+├── server/          # API Express (backend)
+├── .github/         # CI/CD workflows
+└── package.json     # Configuration workspace npm
+```
 
-### `npm start`
+## Technologies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Frontend (client/)
+- React 18
+- Tailwind CSS
+- Framer Motion
+- Axios
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Backend (server/)
+- Node.js + Express
+- MongoDB + Mongoose
+- JWT Authentication
+- Cloudinary (images)
+- Nodemailer (emails)
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+# Installer toutes les dépendances (client + server)
+npm run install:all
+```
 
-### `npm run build`
+## Configuration
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. **Server** : Créer `server/.env` basé sur `server/.env.example`
+2. **Client** : Créer `client/.env` si nécessaire
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Démarrage
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+# Démarrer client et server simultanément
+npm run start:all
 
-### `npm run eject`
+# Ou séparément
+npm run start:client  # Port 3000
+npm run start:server  # Port 5000
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Build
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+# Build client et server
+npm run build:all
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Ou séparément
+npm run build:client
+npm run build:server
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Tests
 
-## Learn More
+```bash
+# Lancer tous les tests
+npm run test:all
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Ou séparément
+npm run test:client
+npm run test:server
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Scripts utiles
 
-### Code Splitting
+```bash
+# Initialiser la base de données
+npm run seed --workspace=server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+# Créer un utilisateur admin
+npm run create-admin --workspace=server
+```
 
-### Analyzing the Bundle Size
+## Développement
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Le projet utilise npm workspaces pour gérer le monorepo. Toutes les commandes peuvent être exécutées depuis la racine.
 
-### Making a Progressive Web App
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+MIT
