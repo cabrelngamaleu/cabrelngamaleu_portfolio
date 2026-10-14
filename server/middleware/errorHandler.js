@@ -1,8 +1,10 @@
 /**
  * Error handling middleware
  * Catches all errors and formats consistent error responses
+ * Note: 'next' is required as 4th argument for Express to recognize this as error middleware
  */
-const errorHandler = (err, req, res, _next) => {
+// eslint-disable-next-line no-unused-vars
+const errorHandler = (err, req, res, next) => {
   let error = { ...err };
   error.message = err.message;
 
@@ -51,7 +53,8 @@ const errorHandler = (err, req, res, _next) => {
 /**
  * 404 handler for undefined routes
  */
-const notFound = (req, res, _next) => {
+// eslint-disable-next-line no-unused-vars
+const notFound = (req, res, next) => {
   res.status(404).json({
     success: false,
     message: `Route non trouvée - ${req.originalUrl}`,

@@ -36,7 +36,7 @@ describe('Blog API Tests', () => {
 
   beforeEach(async () => {
     await BlogPost.deleteMany();
-    
+
     publishedPost = await BlogPost.create({
       title: 'Published Post',
       content: 'This is published content',
@@ -44,7 +44,8 @@ describe('Blog API Tests', () => {
       published: true,
     });
 
-    draftPost = await BlogPost.create({
+    // Draft post for testing unpublished filter
+    await BlogPost.create({
       title: 'Draft Post',
       content: 'This is draft content',
       slug: 'draft-post',
