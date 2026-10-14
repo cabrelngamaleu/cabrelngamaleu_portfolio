@@ -20,6 +20,27 @@
   .borderAll {
     @apply border-[1px] border-zinc-800;
   }
+  
+  /* ======================== Glassmorphism Classes ========================== */
+  .glass-card {
+    @apply backdrop-blur-lg bg-white/10 border border-white/20 rounded-xl shadow-xl;
+  }
+  
+  .glass-nav {
+    @apply backdrop-blur-md bg-bodyColor/80 border-b border-white/10;
+  }
+  
+  .gradient-text-green {
+    @apply text-gradient-green bg-clip-text text-transparent;
+    background: linear-gradient(90deg, #edff20 0%, #78cc6d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% auto;
+    animation: gradient 8s linear infinite;
+  }
+  /* ======================== Glassmorphism End ============================ */
+  
   /* ======================== About Me Start ========================== */
   .aboutRightLi {
     @apply text-zinc-400 text-base font-normal flex justify-between items-center border-b-[1px] border-gray-800 py-2;
@@ -31,4 +52,15 @@
   .sidenavLi{
     @apply text-textColor border-b-[1px] border-b-zinc-500 py-4 text-base hover:text-designColor duration-300
   }
+}
+
+/* ======================== Particle Animation ========================== */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
 }
