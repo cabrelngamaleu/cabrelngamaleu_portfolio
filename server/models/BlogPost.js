@@ -57,7 +57,7 @@ blogPostSchema.pre('save', function (next) {
 });
 
 // Index for querying
-blogPostSchema.index({ slug: 1 });
+// slug a déjà unique:true -> index auto, pas besoin de .index({slug:1})
 blogPostSchema.index({ published: 1, createdAt: -1 });
 blogPostSchema.index({ tags: 1 });
 

@@ -62,7 +62,7 @@ userSchema.methods.comparePassword = async function (candidatePassword) {
 };
 
 // Index for queries
-userSchema.index({ email: 1 });
-userSchema.index({ username: 1 });
+// NOTE: email et username ont déjà unique:true -> index auto, pas besoin de .index() supplémentaire
+// (suppression pour éviter le warning "Duplicate schema index")
 
 module.exports = mongoose.model('User', userSchema);

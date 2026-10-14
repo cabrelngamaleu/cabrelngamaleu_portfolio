@@ -25,8 +25,10 @@ const analyticsRoutes = require('./routes/analytics.routes');
 // Initialize Express app
 const app = express();
 
-// Connect to MongoDB
-connectDB();
+// Connect to MongoDB — pas en test (les tests gèrent leur propre connexion mémoire)
+if (process.env.NODE_ENV !== 'test') {
+  connectDB();
+}
 
 // Create uploads directory if it doesn't exist
 const uploadsDir = path.join(__dirname, 'uploads');
