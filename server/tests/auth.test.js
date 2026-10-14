@@ -4,8 +4,6 @@ const app = require('../server');
 const User = require('../models/User');
 
 describe('Auth API Tests', () => {
-  let testUser;
-
   beforeAll(async () => {
     // Connect to test database
     if (mongoose.connection.readyState === 0) {
@@ -19,7 +17,7 @@ describe('Auth API Tests', () => {
   beforeEach(async () => {
     // Clear users and create test user
     await User.deleteMany();
-    testUser = await User.create({ // eslint-disable-line no-unused-vars
+    await User.create({
       username: 'testuser',
       email: 'test@example.com',
       password: 'password123',
