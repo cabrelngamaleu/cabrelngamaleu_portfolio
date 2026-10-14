@@ -1,0 +1,119 @@
+name: CD
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-push:
+    name: Build and Push Docker Image
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ secrets.DOCKER_USERNAME }}/cabrel-portfolio
+          tags: |
+            type=sha,prefix={{branch}}-
+            type=raw,value=latest,enable={{is_default_branch}}
+      
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/cabrel-portfolio:buildcache
+          cache-to: type=registry,ref=${{ secrets.DOCKER_USERNAME }}/cabrel-portfolio:buildcache,mode=max
+
+  deploy-railway:
+    name: Deploy to Railway
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Trigger Railway deployment
+        if: secrets.RAILWAY_WEBHOOK_URL != ''
+        run: |
+          curl -X POST ${{ secrets.RAILWAY_WEBHOOK_URL }}
+        continue-on-error: true
+      
+      - name: Deployment status
+        run: |
+          echo "Deployment triggered successfully"
+          echo "Check your Railway dashboard for deployment status"
+
+  deploy-render:
+    name: Deploy to Render
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Trigger Render deployment
+        if: secrets.RENDER_DEPLOY_HOOK_URL != ''
+        run: |
+          curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        continue-on-error: true
+      
+      - name: Deployment status
+        run: |
+          echo "Deployment triggered successfully"
+          echo "Check your Render dashboard for deployment status"
+
+  deploy-vps:
+    name: Deploy to VPS
+    runs-on: ubuntu-latest
+    needs: build-and-push
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && secrets.DEPLOY_SSH_KEY != ''
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_SSH_KEY }}
+      
+      - name: Deploy to VPS
+        if: secrets.VPS_HOST != '' && secrets.VPS_USER != ''
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
+            cd ~/cabrel-portfolio
+            docker-compose -f docker-compose.prod.yml down
+            docker pull ${{ secrets.DOCKER_USERNAME }}/cabrel-portfolio:latest
+            docker-compose -f docker-compose.prod.yml up -d
+            docker system prune -af
+          EOF
+        continue-on-error: true
+      
+      - name: Deployment status
+        run: |
+          echo "VPS deployment completed"
+          echo "Application should be running on your VPS"

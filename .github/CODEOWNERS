@@ -1,0 +1,25 @@
+# Code Owners for Portfolio Project
+# These users will be automatically requested for review when someone opens a pull request.
+
+# Default owner for everything in the repo
+* @cabrelngamaleu
+
+# Frontend
+/client/ @cabrelngamaleu
+
+# Backend
+/server/ @cabrelngamaleu
+
+# CI/CD and DevOps
+/.github/ @cabrelngamaleu
+/Dockerfile @cabrelngamaleu
+/docker-compose*.yml @cabrelngamaleu
+
+# Configuration files
+/.eslintrc.js @cabrelngamaleu
+/.prettierrc @cabrelngamaleu
+/jest.config.js @cabrelngamaleu
+
+# Documentation
+/README.md @cabrelngamaleu
+/SECURITY.md @cabrelngamaleu

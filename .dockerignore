@@ -1,0 +1,17 @@
+node_modules
+.git
+.env
+.env.*
+coverage
+build
+dist
+*.log
+README.md
+.github
+.vscode
+.agents
+*.md
+.gitignore
+.prettierrc
+.eslintrc.js
+.editorconfig

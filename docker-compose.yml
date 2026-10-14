@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+      - "5000:5000"
+    environment:
+      - NODE_ENV=development
+      - MONGODB_URI=mongodb://mongo:27017/portfolio_db
+    env_file:
+      - ./server/.env
+    depends_on:
+      - mongo
+    volumes:
+      - ./client:/app/client
+      - ./server:/app/server
+      - /app/client/node_modules
+      - /app/server/node_modules
+    command: sh -c "cd /app/server && npm run dev"
+    networks:
+      - portfolio-network
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - portfolio-network
+
+networks:
+  portfolio-network:
+    driver: bridge
+
+volumes:
+  mongo-data:
