@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Navbar from "../Navbar";
 
@@ -15,7 +15,6 @@ jest.mock("framer-motion", () => ({
   AnimatePresence: ({ children }) => <>{children}</>,
 }));
 
-// Mock the scroll-spy hook
 jest.mock("../../../hooks/useScrollSpy", () => ({
   useScrollSpy: () => "hero",
 }));
@@ -23,7 +22,7 @@ jest.mock("../../../hooks/useScrollSpy", () => ({
 describe("Navbar", () => {
   it("renders without crashing", () => {
     render(<Navbar />);
-    expect(document.querySelector("nav")).toBeInTheDocument();
+    expect(screen.getByRole("navigation")).toBeInTheDocument();
   });
 
   it("renders logo with correct name", () => {

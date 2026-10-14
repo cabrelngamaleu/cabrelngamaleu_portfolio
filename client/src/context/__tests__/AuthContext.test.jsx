@@ -1,14 +1,12 @@
 import React, { useContext } from "react";
 import { render, screen, waitFor, act } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import api from "../../services/api";
 import { AuthContext, AuthProvider } from "../AuthContext";
 
-// Mock axios-based API service
 jest.mock("../../services/api", () => ({
   post: jest.fn(),
 }));
-
-import api from "../../services/api";
 
 const TestConsumer = () => {
   const { user, isAuthenticated, loading } = useContext(AuthContext);
@@ -34,10 +32,10 @@ describe("AuthContext", () => {
       </AuthProvider>
     );
 
-    await waitFor(() => {
-      expect(screen.getByTestId("authenticated")).toHaveTextContent("false");
-      expect(screen.getByTestId("user")).toHaveTextContent("null");
-    });
+    await waitFor(() =>
+      expect(screen.getByTestId("authenticated")).toHaveTextContent("false")
+    );
+    expect(screen.getByTestId("user")).toHaveTextContent("null");
   });
 
   it("restores user from localStorage on mount", async () => {
@@ -51,10 +49,10 @@ describe("AuthContext", () => {
       </AuthProvider>
     );
 
-    await waitFor(() => {
-      expect(screen.getByTestId("authenticated")).toHaveTextContent("true");
-      expect(screen.getByTestId("user")).toHaveTextContent("test@example.com");
-    });
+    await waitFor(() =>
+      expect(screen.getByTestId("authenticated")).toHaveTextContent("true")
+    );
+    expect(screen.getByTestId("user")).toHaveTextContent("test@example.com");
   });
 
   it("login stores token and user on success", async () => {
@@ -68,7 +66,9 @@ describe("AuthContext", () => {
       return (
         <>
           <button
-            onClick={() => login({ email: "test@example.com", password: "pass" })}
+            onClick={() =>
+              login({ email: "test@example.com", password: "pass" })
+            }
           >
             Login
           </button>
@@ -87,10 +87,10 @@ describe("AuthContext", () => {
       screen.getByText("Login").click();
     });
 
-    await waitFor(() => {
-      expect(localStorage.getItem("token")).toBe("jwt-token");
-      expect(screen.getByTestId("auth")).toHaveTextContent("true");
-    });
+    await waitFor(() =>
+      expect(localStorage.getItem("token")).toBe("jwt-token")
+    );
+    expect(screen.getByTestId("auth")).toHaveTextContent("true");
   });
 
   it("login returns error on failure", async () => {
@@ -105,7 +105,10 @@ describe("AuthContext", () => {
         <>
           <button
             onClick={async () => {
-              const result = await login({ email: "bad@example.com", password: "wrong" });
+              const result = await login({
+                email: "bad@example.com",
+                password: "wrong",
+              });
               if (!result.success) setError(result.error);
             }}
           >
@@ -126,8 +129,8 @@ describe("AuthContext", () => {
       screen.getByText("Login").click();
     });
 
-    await waitFor(() => {
-      expect(screen.getByTestId("error")).toHaveTextContent("Invalid credentials");
-    });
+    await waitFor(() =>
+      expect(screen.getByTestId("error")).toHaveTextContent("Invalid credentials")
+    );
   });
 });

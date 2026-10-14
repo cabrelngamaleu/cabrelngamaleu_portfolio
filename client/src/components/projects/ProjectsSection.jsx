@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import api from '../../services/api';
 import SectionTitle from '../common/SectionTitle';
 import ProjectCard from './ProjectCard';
@@ -18,9 +18,17 @@ const ProjectsSection = () => {
     fetchProjects();
   }, []);
 
+  const filterProjects = useCallback(() => {
+    if (activeCategory === 'Tous') {
+      setFilteredProjects(projects);
+    } else {
+      setFilteredProjects(projects.filter((project) => project.category === activeCategory));
+    }
+  }, [projects, activeCategory]);
+
   useEffect(() => {
     filterProjects();
-  }, [projects, activeCategory]);
+  }, [filterProjects]);
 
   const fetchProjects = async () => {
     try {
@@ -42,14 +50,6 @@ const ProjectsSection = () => {
       setError('Impossible de charger les projets. Veuillez réessayer plus tard.');
     } finally {
       setLoading(false);
-    }
-  };
-
-  const filterProjects = () => {
-    if (activeCategory === 'Tous') {
-      setFilteredProjects(projects);
-    } else {
-      setFilteredProjects(projects.filter((project) => project.category === activeCategory));
     }
   };
 
