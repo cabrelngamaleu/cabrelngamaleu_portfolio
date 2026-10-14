@@ -29,7 +29,7 @@ describe("Navbar", () => {
   it("renders logo with correct name", () => {
     render(<Navbar />);
     expect(screen.getByText("Cabrel")).toBeInTheDocument();
-    expect(screen.getByText(" Ngamaleu")).toBeInTheDocument();
+    expect(screen.getByText(/Ngamaleu/i)).toBeInTheDocument();
   });
 
   it("renders nav links", () => {

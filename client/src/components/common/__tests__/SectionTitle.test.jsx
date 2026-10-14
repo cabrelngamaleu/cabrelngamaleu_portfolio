@@ -6,7 +6,9 @@ import SectionTitle from "../SectionTitle";
 // Mock framer-motion to avoid animation issues in tests
 jest.mock("framer-motion", () => ({
   motion: {
-    div: ({ children, ...props }) => <div {...props}>{children}</div>,
+    div: ({ children, initial, animate, whileInView, viewport, transition, ...props }) => (
+      <div {...props}>{children}</div>
+    ),
   },
 }));
 
