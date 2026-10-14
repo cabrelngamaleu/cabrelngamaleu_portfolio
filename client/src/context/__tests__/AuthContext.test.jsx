@@ -32,9 +32,7 @@ describe('AuthContext', () => {
       </AuthProvider>
     );
 
-    await waitFor(() =>
-      expect(screen.getByTestId('authenticated')).toHaveTextContent('false')
-    );
+    await waitFor(() => expect(screen.getByTestId('authenticated')).toHaveTextContent('false'));
     expect(screen.getByTestId('user')).toHaveTextContent('null');
   });
 
@@ -49,9 +47,7 @@ describe('AuthContext', () => {
       </AuthProvider>
     );
 
-    await waitFor(() =>
-      expect(screen.getByTestId('authenticated')).toHaveTextContent('true')
-    );
+    await waitFor(() => expect(screen.getByTestId('authenticated')).toHaveTextContent('true'));
     expect(screen.getByTestId('user')).toHaveTextContent('test@example.com');
   });
 
