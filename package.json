@@ -15,7 +15,7 @@
     "build:client": "npm run build --workspace=client",
     "build:server": "npm run build --workspace=server",
     "build:all": "npm run build:client && npm run build:server",
-    "test:client": "npm test --workspace=client",
+    "test:client": "npm test --workspace=client -- --watchAll=false",
     "test:server": "npm test --workspace=server",
     "test:all": "npm run test:client && npm run test:server",
     "lint:client": "npm run lint --workspace=client",
