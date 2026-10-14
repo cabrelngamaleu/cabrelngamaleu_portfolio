@@ -1,5 +1,5 @@
 import React from 'react';
-import { FiMail, FiMailOpen, FiTrash2 } from 'react-icons/fi';
+import { FiMail, FiEye, FiTrash2 } from 'react-icons/fi';
 import { format } from 'date-fns';
 import { fr } from 'date-fns/locale';
 
@@ -11,7 +11,7 @@ const MessageRow = ({ message, onToggleRead, onDelete }) => {
       <td className="px-6 py-4">
         <div className="flex items-center">
           <div className={`mr-3 ${!message.read ? 'text-designColor' : 'text-textColor/50'}`}>
-            {!message.read ? <FiMail size={18} /> : <FiMailOpen size={18} />}
+            {!message.read ? <FiMail size={18} /> : <FiEye size={18} />}
           </div>
           <div>
             <div
@@ -52,7 +52,7 @@ const MessageRow = ({ message, onToggleRead, onDelete }) => {
           className="text-designColor hover:text-designColor/80 mr-3 transition-colors"
           title={message.read ? 'Marquer comme non lu' : 'Marquer comme lu'}
         >
-          {!message.read ? <FiMailOpen size={18} /> : <FiMail size={18} />}
+          {!message.read ? <FiEye size={18} /> : <FiMail size={18} />}
         </button>
         <button
           onClick={() => onDelete(message._id)}

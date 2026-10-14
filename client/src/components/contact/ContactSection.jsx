@@ -33,62 +33,44 @@ const ContactSection = () => {
           subtitle="Travaillons ensemble sur votre prochain projet"
         />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6"
-          >
+        <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-8 lg:gap-10 items-start">
+          <motion.div initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="space-y-5">
             <div>
-              <h3 className="text-2xl md:text-3xl font-titleFont font-bold text-designColor mb-4">
-                Informations de Contact
+              <h3 className="font-titleFont font-bold text-white text-2xl sm:text-3xl leading-tight mb-3">
+                Parlons de votre <span className="gradient-text-green">prochain projet</span>
               </h3>
-              <p className="text-textColor/80 text-base md:text-lg mb-8">
-                N'hésitez pas à me contacter pour discuter de vos projets, opportunités ou
-                simplement pour échanger.
+              <p className="text-textMuted text-[15px] leading-relaxed">
+                Une idée, une refonte, un besoin d’accélération ? Je réponds vite, clairement, avec un plan d’action.
               </p>
             </div>
-
-            <div className="space-y-4">
+            <div className="grid gap-3">
               {contactInfo.map((info, index) => (
-                <GlassCard key={index} delay={index * 0.1}>
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-12 h-12 rounded-full bg-designColor/20 flex items-center justify-center">
-                      <info.icon className="text-designColor text-xl" />
+                <GlassCard key={index} delay={index * 0.06} spotlight className="!p-4">
+                  <div className="flex items-center gap-4">
+                    <div className="w-11 h-11 rounded-xl bg-white/[0.06] border border-white/10 flex items-center justify-center shrink-0">
+                      <info.icon className="text-white text-lg" />
                     </div>
-                    <div>
-                      <p className="text-textColor/70 text-sm mb-1">{info.label}</p>
+                    <div className="min-w-0">
+                      <p className="text-xs tracking-wide uppercase font-semibold text-textFaint">{info.label}</p>
                       {info.link ? (
-                        <a
-                          href={info.link}
-                          className="text-textColor text-base hover:text-designColor transition-colors"
-                        >
-                          {info.value}
-                        </a>
+                        <a href={info.link} className="text-white text-sm font-medium hover:text-designColor transition-colors break-all">{info.value}</a>
                       ) : (
-                        <p className="text-textColor text-base">{info.value}</p>
+                        <p className="text-white text-sm font-medium">{info.value}</p>
                       )}
                     </div>
                   </div>
                 </GlassCard>
               ))}
             </div>
-
-            <GlassCard>
+            <GlassCard className="!py-4">
               <div className="flex items-center gap-3">
-                <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
-                <p className="text-textColor">
-                  <span className="text-designColor font-semibold">Disponible</span> pour de
-                  nouveaux projets
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
+                <p className="text-sm text-textColor">
+                  <span className="font-semibold text-white">Disponible</span> <span className="text-textMuted">— réponse en &lt; 24h, call de cadrage offerte.</span>
                 </p>
               </div>
             </GlassCard>
           </motion.div>
-
-          {/* Contact Form */}
           <div>
             <ContactForm />
           </div>

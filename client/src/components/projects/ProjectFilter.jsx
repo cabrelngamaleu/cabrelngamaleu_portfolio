@@ -3,17 +3,16 @@ import { motion } from 'framer-motion';
 
 const ProjectFilter = ({ categories, activeCategory, onFilterChange }) => {
   return (
-    <div className="flex flex-wrap justify-center gap-4 mb-12">
+    <div className="flex flex-wrap justify-center gap-2 sm:gap-2.5 mb-10">
       {categories.map((category) => (
         <motion.button
           key={category}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+          whileTap={{ scale: 0.97 }}
           onClick={() => onFilterChange(category)}
-          className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 ${
+          className={`px-5 py-2 rounded-full text-sm font-medium border transition-all ${
             activeCategory === category
-              ? 'bg-designColor text-bodyColor'
-              : 'glass-card text-textColor hover:bg-white/20'
+              ? 'bg-designColor text-[#0a0a0b] border-designColor shadow-[0_4px_16px_rgba(237,255,32,0.25)]'
+              : 'bg-white/[0.04] border-white/10 text-textMuted hover:text-white hover:bg-white/[0.08] hover:border-white/15'
           }`}
         >
           {category}

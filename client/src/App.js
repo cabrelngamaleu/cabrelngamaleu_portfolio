@@ -11,39 +11,22 @@ import Analytics from './pages/Dashboard/Analytics';
 import Profile from './pages/Dashboard/Profile';
 import Settings from './pages/Dashboard/Settings';
 import ProtectedRoute from './components/ProtectedRoute';
-import RoundOne from './components/roundDesigns/RoundOne';
-import RoundTwo from './components/roundDesigns/RoundTwo';
-import RoundThree from './components/roundDesigns/RoundThree';
-import RoundFour from './components/roundDesigns/RoundFour';
-import RoundFive from './components/roundDesigns/RoundFive';
+import ScrollProgress from './components/common/ScrollProgress';
+import ScrollToTop from './components/layout/ScrollToTop';
 
 function App() {
   return (
     <Router>
-      <div className="w-full min-h-screen font-bodyfont text-textColor bg-bodyColor relative">
+      <ScrollToTop />
+      <div className="w-full min-h-screen font-bodyfont text-textColor bg-bodyColor relative overflow-x-hidden">
+        {/* Premium mesh background — subtle, not overwhelming */}
+        <div className="fixed inset-0 -z-10 mesh-bg" />
+        <div className="fixed inset-0 -z-10 grid-overlay opacity-40" />
+        <div className="fixed inset-0 -z-10 noise" />
+        <ScrollProgress />
         <Routes>
-          {/* Public portfolio route */}
-          <Route
-            path="/"
-            element={
-              <>
-                <Portfolio />
-                {/* Decorative background elements */}
-                <div className="w-full h-full absolute top-0 left-0 z-0 pointer-events-none">
-                  <RoundOne />
-                  <RoundTwo />
-                  <RoundThree />
-                  <RoundFour />
-                  <RoundFive />
-                </div>
-              </>
-            }
-          />
-
-          {/* Login route */}
+          <Route path="/" element={<Portfolio />} />
           <Route path="/login" element={<Login />} />
-
-          {/* Protected dashboard routes */}
           <Route
             path="/dashboard"
             element={
