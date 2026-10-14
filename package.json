@@ -17,10 +17,15 @@
     "build:all": "npm run build:client && npm run build:server",
     "test:client": "npm test --workspace=client",
     "test:server": "npm test --workspace=server",
-    "test:all": "npm run test:client && npm run test:server"
+    "test:all": "npm run test:client && npm run test:server",
+    "lint:client": "npm run lint --workspace=client",
+    "lint:server": "npm run lint --workspace=server",
+    "lint": "npm run lint:client && npm run lint:server",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\""
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "prettier": "^3.1.1"
   },
   "engines": {
     "node": ">=16.0.0",

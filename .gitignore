@@ -34,3 +34,10 @@ logs/
 .idea/
 *.swp
 *.swo
+
+# AI workflow artifacts
+.agents/
+*.resolved
+*IMPLEMENTATION-SUMMARY.md
+implementation_plan.md
+.kiro/

@@ -64,3 +64,32 @@
   0%, 100% { opacity: 0.5; }
   50% { opacity: 1; }
 }
+
+/* ======================== Light Mode Theme ========================== */
+.light-mode {
+  --bodyColor: #f5f5f5;
+  --textColor: #1f2937;
+  --designColor: #edff20;
+}
+
+.light-mode .bg-bodyColor {
+  background-color: #f5f5f5;
+}
+
+.light-mode .text-textColor {
+  color: #1f2937;
+}
+
+.light-mode .glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ======================== React DatePicker Styles ========================== */
+.react-datepicker-wrapper {
+  display: inline-block;
+}
+
+.react-datepicker__input-container input {
+  width: 100%;
+}
