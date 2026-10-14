@@ -24,7 +24,7 @@ const createAdmin = async () => {
     }
 
     // Create default admin user
-    const admin = await User.create({
+    await User.create({
       username: 'admin',
       email: 'admin@example.com',
       password: 'admin123', // Will be hashed by pre-save hook

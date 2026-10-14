@@ -91,7 +91,7 @@ const seedDatabase = async () => {
     // Create admin user if none exists
     const userCount = await User.countDocuments();
     if (userCount === 0) {
-      const admin = await User.create({
+      await User.create({
         username: 'admin',
         email: 'admin@example.com',
         password: 'admin123',

@@ -2,7 +2,7 @@
  * Error handling middleware
  * Catches all errors and formats consistent error responses
  */
-const errorHandler = (err, req, res, next) => {
+const errorHandler = (err, req, res, _next) => {
   let error = { ...err };
   error.message = err.message;
 
@@ -51,7 +51,7 @@ const errorHandler = (err, req, res, next) => {
 /**
  * 404 handler for undefined routes
  */
-const notFound = (req, res, next) => {
+const notFound = (req, res, _next) => {
   res.status(404).json({
     success: false,
     message: `Route non trouvée - ${req.originalUrl}`,

@@ -7,7 +7,6 @@ const BlogPost = require('../models/BlogPost');
 describe('Blog API Tests', () => {
   let token;
   let publishedPost;
-  let draftPost;
 
   beforeAll(async () => {
     if (mongoose.connection.readyState === 0) {

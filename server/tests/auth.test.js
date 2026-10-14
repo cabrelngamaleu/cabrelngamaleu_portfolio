@@ -4,8 +4,6 @@ const app = require('../server');
 const User = require('../models/User');
 
 describe('Auth API Tests', () => {
-  let testUser;
-
   beforeAll(async () => {
     // Connect to test database
     if (mongoose.connection.readyState === 0) {

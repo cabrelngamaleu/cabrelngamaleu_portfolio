@@ -123,7 +123,7 @@ const updateProject = async (req, res) => {
       });
     }
 
-    let updateData = { ...req.body };
+    const updateData = { ...req.body };
 
     // Upload new image if provided
     if (req.file) {

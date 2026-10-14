@@ -132,7 +132,7 @@ const updateBlogPost = async (req, res) => {
       });
     }
 
-    let updateData = { ...req.body };
+    const updateData = { ...req.body };
 
     // Upload new cover image if provided
     if (req.file) {
