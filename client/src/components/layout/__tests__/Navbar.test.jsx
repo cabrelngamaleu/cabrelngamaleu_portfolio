@@ -1,9 +1,9 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import Navbar from "../Navbar";
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import Navbar from '../Navbar';
 
-jest.mock("framer-motion", () => ({
+jest.mock('framer-motion', () => ({
   motion: {
     nav: ({ children, ...props }) => <nav {...props}>{children}</nav>,
     div: ({ children, ...props }) => <div {...props}>{children}</div>,
@@ -15,23 +15,23 @@ jest.mock("framer-motion", () => ({
   AnimatePresence: ({ children }) => <>{children}</>,
 }));
 
-jest.mock("../../../hooks/useScrollSpy", () => ({
-  useScrollSpy: () => "hero",
+jest.mock('../../../hooks/useScrollSpy', () => ({
+  useScrollSpy: () => 'hero',
 }));
 
-describe("Navbar", () => {
-  it("renders without crashing", () => {
+describe('Navbar', () => {
+  it('renders without crashing', () => {
     render(<Navbar />);
-    expect(screen.getByRole("navigation")).toBeInTheDocument();
+    expect(screen.getByRole('navigation')).toBeInTheDocument();
   });
 
-  it("renders logo with correct name", () => {
+  it('renders logo with correct name', () => {
     render(<Navbar />);
-    expect(screen.getByText("Cabrel")).toBeInTheDocument();
+    expect(screen.getByText('Cabrel')).toBeInTheDocument();
     expect(screen.getByText(/Ngamaleu/i)).toBeInTheDocument();
   });
 
-  it("renders nav links", () => {
+  it('renders nav links', () => {
     render(<Navbar />);
     expect(screen.getAllByText(/À propos/i)[0]).toBeInTheDocument();
     expect(screen.getAllByText(/Projets/i)[0]).toBeInTheDocument();

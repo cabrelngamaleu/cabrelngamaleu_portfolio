@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import { render, screen, waitFor, act } from "@testing-library/react";
-import "@testing-library/jest-dom";
-import api from "../../services/api";
-import { AuthContext, AuthProvider } from "../AuthContext";
+import React, { useContext } from 'react';
+import { render, screen, waitFor, act } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import api from '../../services/api';
+import { AuthContext, AuthProvider } from '../AuthContext';
 
-jest.mock("../../services/api", () => ({
+jest.mock('../../services/api', () => ({
   post: jest.fn(),
 }));
 
@@ -14,18 +14,18 @@ const TestConsumer = () => {
   return (
     <div>
       <span data-testid="authenticated">{isAuthenticated.toString()}</span>
-      <span data-testid="user">{user ? user.email : "null"}</span>
+      <span data-testid="user">{user ? user.email : 'null'}</span>
     </div>
   );
 };
 
-describe("AuthContext", () => {
+describe('AuthContext', () => {
   beforeEach(() => {
     localStorage.clear();
     jest.clearAllMocks();
   });
 
-  it("provides unauthenticated state by default", async () => {
+  it('provides unauthenticated state by default', async () => {
     render(
       <AuthProvider>
         <TestConsumer />
@@ -33,15 +33,15 @@ describe("AuthContext", () => {
     );
 
     await waitFor(() =>
-      expect(screen.getByTestId("authenticated")).toHaveTextContent("false")
+      expect(screen.getByTestId('authenticated')).toHaveTextContent('false')
     );
-    expect(screen.getByTestId("user")).toHaveTextContent("null");
+    expect(screen.getByTestId('user')).toHaveTextContent('null');
   });
 
-  it("restores user from localStorage on mount", async () => {
-    const mockUser = { email: "test@example.com", username: "test" };
-    localStorage.setItem("user", JSON.stringify(mockUser));
-    localStorage.setItem("token", "fake-token");
+  it('restores user from localStorage on mount', async () => {
+    const mockUser = { email: 'test@example.com', username: 'test' };
+    localStorage.setItem('user', JSON.stringify(mockUser));
+    localStorage.setItem('token', 'fake-token');
 
     render(
       <AuthProvider>
@@ -50,26 +50,22 @@ describe("AuthContext", () => {
     );
 
     await waitFor(() =>
-      expect(screen.getByTestId("authenticated")).toHaveTextContent("true")
+      expect(screen.getByTestId('authenticated')).toHaveTextContent('true')
     );
-    expect(screen.getByTestId("user")).toHaveTextContent("test@example.com");
+    expect(screen.getByTestId('user')).toHaveTextContent('test@example.com');
   });
 
-  it("login stores token and user on success", async () => {
-    const mockUser = { email: "test@example.com", username: "test" };
+  it('login stores token and user on success', async () => {
+    const mockUser = { email: 'test@example.com', username: 'test' };
     api.post.mockResolvedValueOnce({
-      data: { token: "jwt-token", user: mockUser },
+      data: { token: 'jwt-token', user: mockUser },
     });
 
     const LoginButton = () => {
       const { login, isAuthenticated } = useContext(AuthContext);
       return (
         <>
-          <button
-            onClick={() =>
-              login({ email: "test@example.com", password: "pass" })
-            }
-          >
+          <button onClick={() => login({ email: 'test@example.com', password: 'pass' })}>
             Login
           </button>
           <span data-testid="auth">{isAuthenticated.toString()}</span>
@@ -84,31 +80,26 @@ describe("AuthContext", () => {
     );
 
     await act(async () => {
-      screen.getByText("Login").click();
+      screen.getByText('Login').click();
     });
 
-    await waitFor(() =>
-      expect(localStorage.getItem("token")).toBe("jwt-token")
-    );
-    expect(screen.getByTestId("auth")).toHaveTextContent("true");
+    await waitFor(() => expect(localStorage.getItem('token')).toBe('jwt-token'));
+    expect(screen.getByTestId('auth')).toHaveTextContent('true');
   });
 
-  it("login returns error on failure", async () => {
+  it('login returns error on failure', async () => {
     api.post.mockRejectedValueOnce({
-      response: { data: { message: "Invalid credentials" } },
+      response: { data: { message: 'Invalid credentials' } },
     });
 
     const LoginTest = () => {
       const { login } = useContext(AuthContext);
-      const [error, setError] = React.useState("");
+      const [error, setError] = React.useState('');
       return (
         <>
           <button
             onClick={async () => {
-              const result = await login({
-                email: "bad@example.com",
-                password: "wrong",
-              });
+              const result = await login({ email: 'bad@example.com', password: 'wrong' });
               if (!result.success) setError(result.error);
             }}
           >
@@ -126,11 +117,11 @@ describe("AuthContext", () => {
     );
 
     await act(async () => {
-      screen.getByText("Login").click();
+      screen.getByText('Login').click();
     });
 
     await waitFor(() =>
-      expect(screen.getByTestId("error")).toHaveTextContent("Invalid credentials")
+      expect(screen.getByTestId('error')).toHaveTextContent('Invalid credentials')
     );
   });
 });
