@@ -21,25 +21,25 @@ const ContactForm = () => {
     try {
       setSubmitting(true);
       setSubmitError('');
-      
+
       await api.post('/messages', data);
-      
+
       setSubmitSuccess(true);
       reset();
-      
+
       // Reset success message after 5 seconds
       setTimeout(() => {
         setSubmitSuccess(false);
       }, 5000);
     } catch (error) {
-      console.error('Erreur lors de l\'envoi du message:', error);
-      
+      console.error("Erreur lors de l'envoi du message:", error);
+
       if (error.response?.status === 429) {
-        setSubmitError('Vous avez atteint la limite d\'envoi. Veuillez réessayer plus tard.');
+        setSubmitError("Vous avez atteint la limite d'envoi. Veuillez réessayer plus tard.");
       } else {
         setSubmitError(
-          error.response?.data?.message || 
-          'Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer.'
+          error.response?.data?.message ||
+            "Une erreur est survenue lors de l'envoi du message. Veuillez réessayer."
         );
       }
     } finally {
@@ -83,9 +83,7 @@ const ContactForm = () => {
               placeholder="Votre nom"
               {...register('name', { required: 'Le nom est requis' })}
             />
-            {errors.name && (
-              <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
-            )}
+            {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>}
           </div>
 
           {/* Email Field */}
@@ -103,16 +101,14 @@ const ContactForm = () => {
               }`}
               placeholder="votre.email@example.com"
               {...register('email', {
-                required: 'L\'email est requis',
+                required: "L'email est requis",
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                  message: 'Format d\'email invalide',
+                  message: "Format d'email invalide",
                 },
               })}
             />
-            {errors.email && (
-              <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
-            )}
+            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
           </div>
 
           {/* Message Field */}

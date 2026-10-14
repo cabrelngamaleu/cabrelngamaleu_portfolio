@@ -42,9 +42,7 @@ const BlogCard = ({ post }) => {
           {post.title}
         </h3>
 
-        <p className="text-textColor/80 text-sm mb-4 line-clamp-3">
-          {post.excerpt}
-        </p>
+        <p className="text-textColor/80 text-sm mb-4 line-clamp-3">{post.excerpt}</p>
 
         {/* Tags */}
         {post.tags && post.tags.length > 0 && (

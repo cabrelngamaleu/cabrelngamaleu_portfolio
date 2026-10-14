@@ -32,12 +32,10 @@ describe('Auth API Tests', () => {
 
   describe('POST /api/auth/login', () => {
     it('should login with valid credentials', async () => {
-      const res = await request(app)
-        .post('/api/auth/login')
-        .send({
-          email: 'test@example.com',
-          password: 'password123',
-        });
+      const res = await request(app).post('/api/auth/login').send({
+        email: 'test@example.com',
+        password: 'password123',
+      });
 
       expect(res.statusCode).toBe(200);
       expect(res.body.success).toBe(true);
@@ -46,33 +44,27 @@ describe('Auth API Tests', () => {
     });
 
     it('should reject login with invalid email', async () => {
-      const res = await request(app)
-        .post('/api/auth/login')
-        .send({
-          email: 'wrong@example.com',
-          password: 'password123',
-        });
+      const res = await request(app).post('/api/auth/login').send({
+        email: 'wrong@example.com',
+        password: 'password123',
+      });
 
       expect(res.statusCode).toBe(401);
       expect(res.body.success).toBe(false);
     });
 
     it('should reject login with invalid password', async () => {
-      const res = await request(app)
-        .post('/api/auth/login')
-        .send({
-          email: 'test@example.com',
-          password: 'wrongpassword',
-        });
+      const res = await request(app).post('/api/auth/login').send({
+        email: 'test@example.com',
+        password: 'wrongpassword',
+      });
 
       expect(res.statusCode).toBe(401);
       expect(res.body.success).toBe(false);
     });
 
     it('should reject login with missing credentials', async () => {
-      const res = await request(app)
-        .post('/api/auth/login')
-        .send({});
+      const res = await request(app).post('/api/auth/login').send({});
 
       expect(res.statusCode).toBe(400);
       expect(res.body.success).toBe(false);
@@ -88,19 +80,15 @@ describe('Auth API Tests', () => {
 
     it('should accept request with valid token', async () => {
       // Login first to get token
-      const loginRes = await request(app)
-        .post('/api/auth/login')
-        .send({
-          email: 'test@example.com',
-          password: 'password123',
-        });
+      const loginRes = await request(app).post('/api/auth/login').send({
+        email: 'test@example.com',
+        password: 'password123',
+      });
 
       const token = loginRes.body.token;
 
       // Try protected route with token
-      const res = await request(app)
-        .get('/api/messages')
-        .set('Authorization', `Bearer ${token}`);
+      const res = await request(app).get('/api/messages').set('Authorization', `Bearer ${token}`);
 
       expect(res.statusCode).toBe(200);
     });
@@ -109,12 +97,10 @@ describe('Auth API Tests', () => {
   describe('PUT /api/auth/change-password', () => {
     it('should change password with valid old password', async () => {
       // Login first
-      const loginRes = await request(app)
-        .post('/api/auth/login')
-        .send({
-          email: 'test@example.com',
-          password: 'password123',
-        });
+      const loginRes = await request(app).post('/api/auth/login').send({
+        email: 'test@example.com',
+        password: 'password123',
+      });
 
       const token = loginRes.body.token;
 
@@ -131,23 +117,19 @@ describe('Auth API Tests', () => {
       expect(res.body.success).toBe(true);
 
       // Try login with new password
-      const newLoginRes = await request(app)
-        .post('/api/auth/login')
-        .send({
-          email: 'test@example.com',
-          password: 'newpassword123',
-        });
+      const newLoginRes = await request(app).post('/api/auth/login').send({
+        email: 'test@example.com',
+        password: 'newpassword123',
+      });
 
       expect(newLoginRes.statusCode).toBe(200);
     });
 
     it('should reject password change with wrong old password', async () => {
-      const loginRes = await request(app)
-        .post('/api/auth/login')
-        .send({
-          email: 'test@example.com',
-          password: 'password123',
-        });
+      const loginRes = await request(app).post('/api/auth/login').send({
+        email: 'test@example.com',
+        password: 'password123',
+      });
 
       const token = loginRes.body.token;
 

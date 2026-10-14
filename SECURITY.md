@@ -178,6 +178,7 @@ EMAIL_PASSWORD=<app-specific-password>
 ### HTTPS et Reverse Proxy
 
 **Option 1 : Plateforme (Railway/Render)**
+
 - HTTPS automatique avec certificats Let's Encrypt
 - Configuration zero-touch
 
@@ -234,18 +235,21 @@ RUN npm ci --only=production
 ### Mises à jour régulières
 
 **Hebdomadaire :**
+
 ```bash
 npm audit
 npm outdated
 ```
 
 **Mensuel :**
+
 ```bash
 npm update
 npm audit fix
 ```
 
 **Sur alerte Snyk/Dependabot :**
+
 - Évaluer la sévérité
 - Tester le correctif
 - Déployer rapidement si critique
@@ -253,16 +257,19 @@ npm audit fix
 ### Backup des données
 
 **MongoDB Atlas :**
+
 - Snapshots automatiques quotidiens (retention 7 jours)
 - Export manuel mensuel : `mongodump`
 
 **Images Cloudinary :**
+
 - Les images sont stockées sur Cloudinary (backups automatiques)
 - Export périodique recommandé pour images critiques
 
 ### Monitoring et Logs
 
 **À surveiller :**
+
 - Tentatives d'authentification échouées (>5 en 5min)
 - Requêtes rate-limited (pic inhabituel)
 - Erreurs serveur 5xx
@@ -270,6 +277,7 @@ npm audit fix
 - Utilisation CPU/Mémoire
 
 **Outils recommandés :**
+
 - Railway/Render logs intégrés
 - MongoDB Atlas monitoring
 - Sentry pour error tracking
@@ -309,7 +317,7 @@ Nous remercions les chercheurs en sécurité qui signalent des vulnérabilités 
 
 <!-- Les contributeurs seront listés ici -->
 
-*Soyez le premier à contribuer à la sécurité de ce projet !*
+_Soyez le premier à contribuer à la sécurité de ce projet !_
 
 ## Security Contact
 

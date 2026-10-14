@@ -10,12 +10,8 @@ const Settings = () => {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold gradient-text-green mb-2">
-          Paramètres
-        </h1>
-        <p className="text-textColor/70">
-          Personnalisez votre expérience du tableau de bord
-        </p>
+        <h1 className="text-3xl font-bold gradient-text-green mb-2">Paramètres</h1>
+        <p className="text-textColor/70">Personnalisez votre expérience du tableau de bord</p>
       </div>
 
       {/* Theme settings */}
@@ -24,9 +20,7 @@ const Settings = () => {
         animate={{ opacity: 1, y: 0 }}
         className="glass-card p-6 rounded-xl"
       >
-        <h3 className="text-xl font-semibold text-textColor mb-4">
-          Apparence
-        </h3>
+        <h3 className="text-xl font-semibold text-textColor mb-4">Apparence</h3>
 
         <div className="flex items-center justify-between py-4 border-b border-designColor/20">
           <div className="flex items-center space-x-3">
@@ -69,9 +63,7 @@ const Settings = () => {
         transition={{ delay: 0.1 }}
         className="glass-card p-6 rounded-xl"
       >
-        <h3 className="text-xl font-semibold text-textColor mb-4">
-          Paramètres généraux
-        </h3>
+        <h3 className="text-xl font-semibold text-textColor mb-4">Paramètres généraux</h3>
 
         <div className="space-y-4 text-textColor/70">
           <div className="flex items-center justify-between py-4 border-b border-designColor/20">
@@ -81,21 +73,15 @@ const Settings = () => {
                 Recevoir des notifications pour les nouveaux messages
               </p>
             </div>
-            <div className="text-textColor/50 text-sm">
-              À venir
-            </div>
+            <div className="text-textColor/50 text-sm">À venir</div>
           </div>
 
           <div className="flex items-center justify-between py-4 border-b border-designColor/20">
             <div>
               <p className="text-textColor font-medium">Langue</p>
-              <p className="text-textColor/60 text-sm">
-                Langue de l'interface
-              </p>
+              <p className="text-textColor/60 text-sm">Langue de l'interface</p>
             </div>
-            <div className="text-textColor/50 text-sm">
-              Français
-            </div>
+            <div className="text-textColor/50 text-sm">Français</div>
           </div>
 
           <div className="flex items-center justify-between py-4">
@@ -105,9 +91,7 @@ const Settings = () => {
                 Sauvegarder automatiquement les brouillons
               </p>
             </div>
-            <div className="text-textColor/50 text-sm">
-              À venir
-            </div>
+            <div className="text-textColor/50 text-sm">À venir</div>
           </div>
         </div>
       </motion.div>

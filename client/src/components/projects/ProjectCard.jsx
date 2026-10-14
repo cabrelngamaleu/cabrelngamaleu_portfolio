@@ -38,9 +38,7 @@ const ProjectCard = ({ project }) => {
           {project.title}
         </h3>
 
-        <p className="text-textColor/80 text-sm mb-4 line-clamp-3">
-          {project.description}
-        </p>
+        <p className="text-textColor/80 text-sm mb-4 line-clamp-3">{project.description}</p>
 
         {/* Technologies */}
         {project.technologies && project.technologies.length > 0 && (

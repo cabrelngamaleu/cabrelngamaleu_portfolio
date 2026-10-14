@@ -25,12 +25,10 @@ describe('Projects API Tests', () => {
       role: 'admin',
     });
 
-    const loginRes = await request(app)
-      .post('/api/auth/login')
-      .send({
-        email: 'admin@test.com',
-        password: 'password123',
-      });
+    const loginRes = await request(app).post('/api/auth/login').send({
+      email: 'admin@test.com',
+      password: 'password123',
+    });
 
     token = loginRes.body.token;
   });
@@ -88,7 +86,7 @@ describe('Projects API Tests', () => {
       const res = await request(app).get('/api/projects?featured=true');
 
       expect(res.statusCode).toBe(200);
-      expect(res.body.data.every(p => p.featured)).toBe(true);
+      expect(res.body.data.every((p) => p.featured)).toBe(true);
     });
   });
 

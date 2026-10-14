@@ -12,7 +12,7 @@ const Portfolio = () => {
   return (
     <div className="w-full min-h-screen bg-bodyColor text-textColor">
       <Navbar />
-      
+
       <main>
         <HeroSection />
         <AboutSection />

@@ -16,9 +16,7 @@ const BlogManagement = () => {
       setError('');
       const response = await api.get('/blog');
       // Sort by date descending
-      const sorted = response.data.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      );
+      const sorted = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       setPosts(sorted);
     } catch (err) {
       console.error('Erreur lors du chargement des articles:', err);
@@ -52,7 +50,7 @@ const BlogManagement = () => {
       setPosts(posts.filter((p) => p._id !== postId));
     } catch (err) {
       console.error('Erreur lors de la suppression:', err);
-      alert('Erreur lors de la suppression de l\'article');
+      alert("Erreur lors de la suppression de l'article");
     }
   };
 
@@ -65,12 +63,8 @@ const BlogManagement = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold gradient-text-green mb-2">
-            Gestion du Blog
-          </h1>
-          <p className="text-textColor/70">
-            Gérez vos articles de blog et brouillons
-          </p>
+          <h1 className="text-3xl font-bold gradient-text-green mb-2">Gestion du Blog</h1>
+          <p className="text-textColor/70">Gérez vos articles de blog et brouillons</p>
         </div>
         <button
           onClick={handleAddPost}

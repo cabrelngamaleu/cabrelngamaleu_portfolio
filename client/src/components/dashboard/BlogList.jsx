@@ -63,12 +63,8 @@ const BlogList = ({ posts, onEdit, onDelete, loading }) => {
                       />
                     )}
                     <div>
-                      <div className="text-sm font-medium text-textColor">
-                        {post.title}
-                      </div>
-                      <div className="text-xs text-textColor/60">
-                        {post.slug}
-                      </div>
+                      <div className="text-sm font-medium text-textColor">{post.title}</div>
+                      <div className="text-xs text-textColor/60">{post.slug}</div>
                     </div>
                   </div>
                 </td>

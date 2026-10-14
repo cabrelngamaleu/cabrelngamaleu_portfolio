@@ -29,9 +29,12 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden py-20">
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden py-20"
+    >
       <ParticlesBackground />
-      
+
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
           {/* Text Content */}
@@ -47,8 +50,7 @@ const HeroSection = () => {
               transition={{ delay: 0.2 }}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-titleFont font-bold mb-6"
             >
-              Bonjour, je suis{' '}
-              <span className="gradient-text-green">Cabrel Ngamaleu</span>
+              Bonjour, je suis <span className="gradient-text-green">Cabrel Ngamaleu</span>
             </motion.h1>
 
             <motion.div
@@ -67,8 +69,8 @@ const HeroSection = () => {
               transition={{ delay: 0.6 }}
               className="text-base sm:text-lg text-textColor/80 mb-8 max-w-2xl mx-auto lg:mx-0"
             >
-              Passionné par le développement de solutions innovantes et performantes.
-              Plus de 6 ans d'expérience dans la création d'applications web et mobiles.
+              Passionné par le développement de solutions innovantes et performantes. Plus de 6 ans
+              d'expérience dans la création d'applications web et mobiles.
             </motion.p>
 
             {/* CTA Buttons */}
@@ -78,16 +80,10 @@ const HeroSection = () => {
               transition={{ delay: 0.8 }}
               className="flex flex-wrap gap-4 justify-center lg:justify-start"
             >
-              <AnimatedButton
-                variant="primary"
-                onClick={() => scrollToSection('projects')}
-              >
+              <AnimatedButton variant="primary" onClick={() => scrollToSection('projects')}>
                 Voir mes projets
               </AnimatedButton>
-              <AnimatedButton
-                variant="outline"
-                onClick={() => scrollToSection('contact')}
-              >
+              <AnimatedButton variant="outline" onClick={() => scrollToSection('contact')}>
                 Me contacter
               </AnimatedButton>
             </motion.div>
@@ -135,11 +131,7 @@ const HeroSection = () => {
               {/* Rotating gradient border */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-designColor via-green-400 to-designColor animate-spin-slow"></div>
               <div className="absolute inset-2 rounded-full overflow-hidden">
-                <img
-                  src={bannerImg}
-                  alt="Cabrel Ngamaleu"
-                  className="w-full h-full object-cover"
-                />
+                <img src={bannerImg} alt="Cabrel Ngamaleu" className="w-full h-full object-cover" />
               </div>
             </div>
           </motion.div>

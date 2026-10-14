@@ -97,9 +97,7 @@ const Navbar = () => {
               className="fixed top-0 right-0 h-full w-64 glass-card md:hidden"
             >
               <div className="flex justify-between items-center p-6 border-b border-white/20">
-                <h2 className="text-xl font-titleFont font-bold text-designColor">
-                  Menu
-                </h2>
+                <h2 className="text-xl font-titleFont font-bold text-designColor">Menu</h2>
                 <button
                   onClick={() => setMenuOpen(false)}
                   className="text-textColor hover:text-designColor text-2xl"

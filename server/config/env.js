@@ -8,11 +8,7 @@ dotenv.config({ path: path.join(__dirname, '../.env') });
  * Validate required environment variables
  */
 const validateEnv = () => {
-  const required = [
-    'MONGODB_URI',
-    'JWT_SECRET',
-    'FRONTEND_URL',
-  ];
+  const required = ['MONGODB_URI', 'JWT_SECRET', 'FRONTEND_URL'];
 
   const missing = required.filter((key) => !process.env[key]);
 

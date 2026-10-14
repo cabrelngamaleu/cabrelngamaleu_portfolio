@@ -27,7 +27,7 @@ const createMessage = async (req, res) => {
         html: newMessageEmailTemplate(name, email, message),
       });
     } catch (emailError) {
-      console.error('Erreur lors de l\'envoi de l\'email:', emailError);
+      console.error("Erreur lors de l'envoi de l'email:", emailError);
       // Don't fail the request if email fails, message is already saved
     }
 

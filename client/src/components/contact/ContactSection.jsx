@@ -47,8 +47,8 @@ const ContactSection = () => {
                 Informations de Contact
               </h3>
               <p className="text-textColor/80 text-base md:text-lg mb-8">
-                N'hésitez pas à me contacter pour discuter de vos projets, 
-                opportunités ou simplement pour échanger.
+                N'hésitez pas à me contacter pour discuter de vos projets, opportunités ou
+                simplement pour échanger.
               </p>
             </div>
 
@@ -81,7 +81,8 @@ const ContactSection = () => {
               <div className="flex items-center gap-3">
                 <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
                 <p className="text-textColor">
-                  <span className="text-designColor font-semibold">Disponible</span> pour de nouveaux projets
+                  <span className="text-designColor font-semibold">Disponible</span> pour de
+                  nouveaux projets
                 </p>
               </div>
             </GlassCard>

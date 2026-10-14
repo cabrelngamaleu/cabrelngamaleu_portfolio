@@ -10,7 +10,7 @@ const fs = require('fs').promises;
 const getProjects = async (req, res) => {
   try {
     const { category, featured } = req.query;
-    
+
     // Build filter object
     const filter = {};
     if (category) filter.category = category;
@@ -84,7 +84,7 @@ const createProject = async (req, res) => {
 
     // Parse technologies array if it's a string
     if (typeof projectData.technologies === 'string') {
-      projectData.technologies = projectData.technologies.split(',').map(t => t.trim());
+      projectData.technologies = projectData.technologies.split(',').map((t) => t.trim());
     }
 
     const project = await Project.create(projectData);
@@ -135,7 +135,7 @@ const updateProject = async (req, res) => {
 
     // Parse technologies array if it's a string
     if (typeof updateData.technologies === 'string') {
-      updateData.technologies = updateData.technologies.split(',').map(t => t.trim());
+      updateData.technologies = updateData.technologies.split(',').map((t) => t.trim());
     }
 
     project = await Project.findByIdAndUpdate(req.params.id, updateData, {

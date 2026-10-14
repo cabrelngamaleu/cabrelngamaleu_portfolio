@@ -35,7 +35,7 @@ const sendEmail = async (options) => {
     console.log('Email envoyé:', info.messageId);
     return info;
   } catch (error) {
-    console.error('Erreur lors de l\'envoi de l\'email:', error);
+    console.error("Erreur lors de l'envoi de l'email:", error);
     throw error;
   }
 };

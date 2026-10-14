@@ -49,11 +49,13 @@ npm install
 ### 5. Sécuriser le JWT Secret
 
 Modifier `server/.env` avec une clé aléatoire sécurisée :
+
 ```
 JWT_SECRET=votre_cle_secrete_aleatoire_tres_longue_et_complexe
 ```
 
 Générer une clé aléatoire avec Node.js :
+
 ```bash
 node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
 ```
@@ -63,15 +65,19 @@ node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
 ### Développement Local
 
 **Terminal 1 - Backend :**
+
 ```bash
 npm run dev:server
 ```
+
 Le serveur démarre sur http://localhost:5000
 
 **Terminal 2 - Frontend :**
+
 ```bash
 npm run dev:client
 ```
+
 Le portfolio s'ouvre sur http://localhost:3000
 
 ### Développement avec Docker
@@ -81,6 +87,7 @@ docker-compose up
 ```
 
 Accéder à :
+
 - Frontend : http://localhost:3000
 - Backend API : http://localhost:5000/api
 
@@ -94,6 +101,7 @@ node scripts/createAdmin.js
 ```
 
 Ou utiliser directement l'API :
+
 ```bash
 curl -X POST http://localhost:5000/api/auth/register \
   -H "Content-Type: application/json" \
@@ -135,6 +143,7 @@ curl -X POST http://localhost:5000/api/auth/register \
 ### Option 3 : Vercel + MongoDB Atlas
 
 **Frontend (Vercel) :**
+
 ```bash
 cd client
 npm install -g vercel
@@ -204,6 +213,7 @@ npm run format              # Formater le code
 ## 📞 Support
 
 Pour toute question :
+
 - Email : cabrel.ngamaleu@example.com
 - GitHub Issues : https://github.com/cabrelngamaleu/cabrelngamaleu_portfolio/issues
 

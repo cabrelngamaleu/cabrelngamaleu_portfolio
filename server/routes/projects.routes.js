@@ -23,10 +23,7 @@ const createProjectSchema = Joi.object({
     'any.required': 'La description est requise',
   }),
   longDescription: Joi.string().allow(''),
-  technologies: Joi.alternatives().try(
-    Joi.array().items(Joi.string()),
-    Joi.string()
-  ),
+  technologies: Joi.alternatives().try(Joi.array().items(Joi.string()), Joi.string()),
   category: Joi.string()
     .valid('web', 'mobile', 'desktop', 'fullstack', 'frontend', 'backend', 'autre')
     .required()
@@ -44,11 +41,16 @@ const updateProjectSchema = Joi.object({
   title: Joi.string(),
   description: Joi.string(),
   longDescription: Joi.string().allow(''),
-  technologies: Joi.alternatives().try(
-    Joi.array().items(Joi.string()),
-    Joi.string()
+  technologies: Joi.alternatives().try(Joi.array().items(Joi.string()), Joi.string()),
+  category: Joi.string().valid(
+    'web',
+    'mobile',
+    'desktop',
+    'fullstack',
+    'frontend',
+    'backend',
+    'autre'
   ),
-  category: Joi.string().valid('web', 'mobile', 'desktop', 'fullstack', 'frontend', 'backend', 'autre'),
   liveUrl: Joi.string().uri().allow(''),
   githubUrl: Joi.string().uri().allow(''),
   featured: Joi.boolean(),

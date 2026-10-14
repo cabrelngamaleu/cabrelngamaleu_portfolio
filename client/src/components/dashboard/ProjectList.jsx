@@ -52,13 +52,9 @@ const ProjectList = ({ projects, onEdit, onDelete, loading }) => {
 
           {/* Project info */}
           <div className="p-4">
-            <h3 className="text-lg font-semibold text-textColor mb-2 truncate">
-              {project.title}
-            </h3>
-            <p className="text-sm text-textColor/70 mb-3 line-clamp-2">
-              {project.description}
-            </p>
-            
+            <h3 className="text-lg font-semibold text-textColor mb-2 truncate">{project.title}</h3>
+            <p className="text-sm text-textColor/70 mb-3 line-clamp-2">{project.description}</p>
+
             <div className="flex items-center justify-between text-xs text-textColor/60 mb-4">
               <span className="px-2 py-1 bg-designColor/10 rounded">
                 {project.category || 'Non catégorisé'}

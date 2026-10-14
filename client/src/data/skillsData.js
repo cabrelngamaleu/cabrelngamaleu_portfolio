@@ -1,11 +1,4 @@
-import {
-  FaReact,
-  FaNodeJs,
-  FaDocker,
-  FaGitAlt,
-  FaPython,
-  FaJava,
-} from 'react-icons/fa';
+import { FaReact, FaNodeJs, FaDocker, FaGitAlt, FaPython, FaJava } from 'react-icons/fa';
 import {
   SiJavascript,
   SiTypescript,

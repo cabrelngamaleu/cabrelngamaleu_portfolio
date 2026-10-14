@@ -16,10 +16,7 @@ const SkillsSection = () => {
   return (
     <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <SectionTitle
-          title="Mes Compétences"
-          subtitle="Technologies et outils que je maîtrise"
-        />
+        <SectionTitle title="Mes Compétences" subtitle="Technologies et outils que je maîtrise" />
 
         <div className="space-y-16">
           {categories.map((category, catIndex) => (
@@ -39,9 +36,7 @@ const SkillsSection = () => {
                   <GlassCard key={index} delay={index * 0.1}>
                     <div className="flex flex-col items-center space-y-4">
                       <TechIcon Icon={skill.icon} size={48} />
-                      <h4 className="text-lg font-semibold text-textColor">
-                        {skill.name}
-                      </h4>
+                      <h4 className="text-lg font-semibold text-textColor">{skill.name}</h4>
                       <SkillCircle percentage={skill.level} size={100} />
                     </div>
                   </GlassCard>

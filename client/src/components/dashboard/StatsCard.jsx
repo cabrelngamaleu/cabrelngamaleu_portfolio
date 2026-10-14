@@ -13,11 +13,7 @@ const StatsCard = ({ title, value, icon: Icon, color = 'designColor', loading = 
         <div>
           <p className="text-textColor/70 text-sm mb-2">{title}</p>
           <p className="text-3xl font-bold text-textColor">
-            {loading ? (
-              <span className="animate-pulse">---</span>
-            ) : (
-              value
-            )}
+            {loading ? <span className="animate-pulse">---</span> : value}
           </p>
         </div>
         {Icon && (
@@ -27,7 +23,11 @@ const StatsCard = ({ title, value, icon: Icon, color = 'designColor', loading = 
               backgroundColor: `var(--${color}, rgba(237, 255, 32, 0.1))`,
             }}
           >
-            <Icon className={`text-${color}`} size={24} style={{ color: `var(--${color}, #edff20)` }} />
+            <Icon
+              className={`text-${color}`}
+              size={24}
+              style={{ color: `var(--${color}, #edff20)` }}
+            />
           </div>
         )}
       </div>

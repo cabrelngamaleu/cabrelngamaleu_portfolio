@@ -7,13 +7,13 @@ export const useTheme = () => {
 
   useEffect(() => {
     const root = document.documentElement;
-    
+
     if (theme === 'light') {
       root.classList.add('light-mode');
     } else {
       root.classList.remove('light-mode');
     }
-    
+
     localStorage.setItem('theme', theme);
   }, [theme]);
 

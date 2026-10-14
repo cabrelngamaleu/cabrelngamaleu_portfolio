@@ -11,7 +11,7 @@ const slugify = require('slugify');
 const getBlogPosts = async (req, res) => {
   try {
     const { published } = req.query;
-    
+
     // Default to published posts only for public access
     const filter = { published: published === 'false' ? false : true };
 
@@ -86,7 +86,7 @@ const createBlogPost = async (req, res) => {
     // Parse tags array if it's a string
     let tags = req.body.tags;
     if (typeof tags === 'string') {
-      tags = tags.split(',').map(t => t.trim());
+      tags = tags.split(',').map((t) => t.trim());
     }
 
     const postData = {
@@ -153,7 +153,7 @@ const updateBlogPost = async (req, res) => {
 
     // Parse tags array if it's a string
     if (typeof updateData.tags === 'string') {
-      updateData.tags = updateData.tags.split(',').map(t => t.trim());
+      updateData.tags = updateData.tags.split(',').map((t) => t.trim());
     }
 
     post = await BlogPost.findByIdAndUpdate(req.params.id, updateData, {

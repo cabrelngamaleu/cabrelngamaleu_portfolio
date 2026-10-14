@@ -34,10 +34,7 @@ const BlogSection = () => {
     return (
       <section id="blog" className="py-20 px-4 sm:px-6 lg:px-8 bg-bodyColor/50">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle
-            title="Mon Blog"
-            subtitle="Derniers articles et réflexions"
-          />
+          <SectionTitle title="Mon Blog" subtitle="Derniers articles et réflexions" />
           <LoadingSpinner size="lg" className="my-20" />
         </div>
       </section>
@@ -47,10 +44,7 @@ const BlogSection = () => {
   return (
     <section id="blog" className="py-20 px-4 sm:px-6 lg:px-8 bg-bodyColor/50">
       <div className="max-w-7xl mx-auto">
-        <SectionTitle
-          title="Mon Blog"
-          subtitle="Derniers articles et réflexions"
-        />
+        <SectionTitle title="Mon Blog" subtitle="Derniers articles et réflexions" />
 
         {error ? (
           <div className="text-center py-20">
@@ -58,9 +52,7 @@ const BlogSection = () => {
           </div>
         ) : posts.length === 0 ? (
           <div className="text-center py-20">
-            <p className="text-textColor/80 text-lg">
-              Aucun article pour le moment.
-            </p>
+            <p className="text-textColor/80 text-lg">Aucun article pour le moment.</p>
           </div>
         ) : (
           <>
@@ -78,9 +70,7 @@ const BlogSection = () => {
                 transition={{ duration: 0.6 }}
                 className="text-center"
               >
-                <AnimatedButton variant="outline">
-                  Voir tous les articles
-                </AnimatedButton>
+                <AnimatedButton variant="outline">Voir tous les articles</AnimatedButton>
               </motion.div>
             )}
           </>

@@ -18,6 +18,7 @@ cabrelngamaleu_portfolio/
 ### 2. Backend Complet (server/)
 
 ✅ **API REST Express avec :**
+
 - Authentification JWT
 - 5 modèles MongoDB (Project, BlogPost, Message, User, Analytics)
 - Routes complètes :
@@ -28,6 +29,7 @@ cabrelngamaleu_portfolio/
   - `/api/analytics/*` - Statistiques
 
 ✅ **Sécurité Renforcée :**
+
 - Helmet.js (headers HTTP sécurisés)
 - CORS configuré
 - Rate limiting (100 req/15min)
@@ -36,6 +38,7 @@ cabrelngamaleu_portfolio/
 - Mots de passe bcrypt (12 rounds)
 
 ✅ **Fonctionnalités :**
+
 - Upload d'images Cloudinary
 - Envoi d'emails Nodemailer
 - Tests Jest (70% coverage)
@@ -43,6 +46,7 @@ cabrelngamaleu_portfolio/
 ### 3. Frontend Amélioré (client/)
 
 ✅ **Design Moderne :**
+
 - Glassmorphism effects
 - Animations au scroll
 - Texte gradient animé
@@ -50,6 +54,7 @@ cabrelngamaleu_portfolio/
 - Responsive 320px-1920px
 
 ✅ **Sections du Portfolio :**
+
 - Hero avec particules
 - About avec compteurs animés
 - Skills avec cercles SVG
@@ -59,6 +64,7 @@ cabrelngamaleu_portfolio/
 - Footer avec liens sociaux
 
 ✅ **Intégration API :**
+
 - Service Axios configuré
 - AuthContext pour l'authentification
 - Gestion des erreurs
@@ -67,6 +73,7 @@ cabrelngamaleu_portfolio/
 ### 4. Dashboard Admin Complet
 
 ✅ **Pages du Dashboard :**
+
 - Login avec JWT
 - Vue d'ensemble avec Chart.js
 - Gestion des projets (CRUD + upload images + drag & drop)
@@ -79,16 +86,19 @@ cabrelngamaleu_portfolio/
 ### 5. CI/CD et DevOps
 
 ✅ **GitHub Actions :**
+
 - `.github/workflows/ci.yml` - Lint, tests, security scan
 - `.github/workflows/cd.yml` - Build Docker + deploy
 - `.github/workflows/dependency-review.yml` - Scan dépendances
 
 ✅ **Docker :**
+
 - Dockerfile multi-stage
 - docker-compose.yml (dev)
 - docker-compose.prod.yml (production)
 
 ✅ **Configuration :**
+
 - ESLint + Prettier
 - Jest configuré
 - Environment variables
@@ -96,6 +106,7 @@ cabrelngamaleu_portfolio/
 ### 6. Documentation
 
 ✅ **Fichiers créés :**
+
 - SETUP_INSTRUCTIONS.md (guide complet)
 - SECURITY.md (pratiques de sécurité)
 - README.md mis à jour
@@ -114,11 +125,13 @@ Tous les commits sont signés avec le nom **"Cabrel Ngamaleu"** :
 ## 📝 Fichiers Nettoyés
 
 ✅ **Supprimés (pas sur GitHub) :**
+
 - `.agents/` - Workflows IA
 - `implementation_plan.md.resolved` - Plan IA
 - `FEAT-*-IMPLEMENTATION-SUMMARY.md` - Résumés IA
 
 ✅ **Ajouté au .gitignore :**
+
 ```
 .agents/
 *.resolved
@@ -138,6 +151,7 @@ git push origin main
 ```
 
 Ou utilisez le script fourni :
+
 ```bash
 push_to_github.bat
 ```
@@ -151,6 +165,7 @@ npm install
 ### 3. Configuration
 
 Suivre les instructions dans `SETUP_INSTRUCTIONS.md` pour configurer :
+
 - MongoDB Atlas
 - Cloudinary
 - Email (Gmail)
@@ -167,6 +182,7 @@ npm run dev:client
 ```
 
 Accéder à :
+
 - Portfolio : http://localhost:3000
 - Dashboard : http://localhost:3000/dashboard
 - API : http://localhost:5000/api
@@ -181,6 +197,7 @@ node scripts/createAdmin.js
 ### 6. Déploiement
 
 Choisir une plateforme (voir SETUP_INSTRUCTIONS.md) :
+
 - Railway (recommandé)
 - Render
 - Vercel + Backend séparé
@@ -210,6 +227,7 @@ Choisir une plateforme (voir SETUP_INSTRUCTIONS.md) :
 ## 🔒 Sécurité
 
 Toutes les bonnes pratiques implémentées :
+
 - ✅ Headers HTTP sécurisés (Helmet)
 - ✅ CORS configuré
 - ✅ Rate limiting

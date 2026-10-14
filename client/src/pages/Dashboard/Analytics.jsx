@@ -28,7 +28,7 @@ const Analytics = () => {
       setError('');
 
       let params = {};
-      
+
       if (dateRange === 'custom' && startDate && endDate) {
         params.startDate = startDate.toISOString();
         params.endDate = endDate.toISOString();
@@ -93,10 +93,23 @@ const Analytics = () => {
     } catch (err) {
       console.error('Erreur lors du chargement des analytics:', err);
       setError('Erreur lors du chargement des données analytiques');
-      
+
       // Set empty data to avoid errors
-      setVisitsData({ labels: [], datasets: [{ label: 'Visites', data: [], borderColor: '#edff20', backgroundColor: 'rgba(237, 255, 32, 0.1)' }] });
-      setTopPagesData({ labels: [], datasets: [{ label: 'Visites', data: [], backgroundColor: 'rgba(237, 255, 32, 0.8)' }] });
+      setVisitsData({
+        labels: [],
+        datasets: [
+          {
+            label: 'Visites',
+            data: [],
+            borderColor: '#edff20',
+            backgroundColor: 'rgba(237, 255, 32, 0.1)',
+          },
+        ],
+      });
+      setTopPagesData({
+        labels: [],
+        datasets: [{ label: 'Visites', data: [], backgroundColor: 'rgba(237, 255, 32, 0.8)' }],
+      });
       setEventTypesData({ labels: [], datasets: [{ data: [], backgroundColor: [] }] });
     } finally {
       setLoading(false);
@@ -143,12 +156,8 @@ const Analytics = () => {
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-4">
         <div>
-          <h1 className="text-3xl font-bold gradient-text-green mb-2">
-            Analytics
-          </h1>
-          <p className="text-textColor/70">
-            Suivez les performances de votre portfolio
-          </p>
+          <h1 className="text-3xl font-bold gradient-text-green mb-2">Analytics</h1>
+          <p className="text-textColor/70">Suivez les performances de votre portfolio</p>
         </div>
 
         {/* Date range selector */}
@@ -163,9 +172,7 @@ const Analytics = () => {
                   : 'bg-designColor/10 text-textColor hover:bg-designColor/20'
               }`}
             >
-              {range === 'custom'
-                ? 'Personnalisé'
-                : `${range} jours`}
+              {range === 'custom' ? 'Personnalisé' : `${range} jours`}
             </button>
           ))}
         </div>
@@ -211,12 +218,7 @@ const Analytics = () => {
 
       {/* Stats cards */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <StatsCard
-          title="Total Visites"
-          value={stats.totalVisits}
-          icon={FiEye}
-          loading={loading}
-        />
+        <StatsCard title="Total Visites" value={stats.totalVisits} icon={FiEye} loading={loading} />
         <StatsCard
           title="Clics sur Projets"
           value={stats.totalProjectClicks}
@@ -239,9 +241,7 @@ const Analytics = () => {
           animate={{ opacity: 1, y: 0 }}
           className="glass-card p-6 rounded-xl"
         >
-          <h3 className="text-lg font-semibold text-textColor mb-4">
-            Visites par jour
-          </h3>
+          <h3 className="text-lg font-semibold text-textColor mb-4">Visites par jour</h3>
           <div className="h-64">
             {loading ? (
               <div className="flex items-center justify-center h-full">
@@ -260,9 +260,7 @@ const Analytics = () => {
           transition={{ delay: 0.1 }}
           className="glass-card p-6 rounded-xl"
         >
-          <h3 className="text-lg font-semibold text-textColor mb-4">
-            Top 5 pages visitées
-          </h3>
+          <h3 className="text-lg font-semibold text-textColor mb-4">Top 5 pages visitées</h3>
           <div className="h-64">
             {loading ? (
               <div className="flex items-center justify-center h-full">
@@ -282,9 +280,7 @@ const Analytics = () => {
         transition={{ delay: 0.2 }}
         className="glass-card p-6 rounded-xl"
       >
-        <h3 className="text-lg font-semibold text-textColor mb-4">
-          Types d'événements
-        </h3>
+        <h3 className="text-lg font-semibold text-textColor mb-4">Types d'événements</h3>
         <div className="h-64 flex items-center justify-center">
           {loading ? (
             <div className="animate-pulse text-textColor/50">Chargement...</div>

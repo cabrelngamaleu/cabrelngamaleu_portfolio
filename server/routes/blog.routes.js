@@ -23,10 +23,7 @@ const createBlogPostSchema = Joi.object({
     'any.required': 'Le contenu est requis',
   }),
   excerpt: Joi.string().allow(''),
-  tags: Joi.alternatives().try(
-    Joi.array().items(Joi.string()),
-    Joi.string()
-  ),
+  tags: Joi.alternatives().try(Joi.array().items(Joi.string()), Joi.string()),
   category: Joi.string().allow(''),
   published: Joi.boolean(),
 });
@@ -35,10 +32,7 @@ const updateBlogPostSchema = Joi.object({
   title: Joi.string(),
   content: Joi.string(),
   excerpt: Joi.string().allow(''),
-  tags: Joi.alternatives().try(
-    Joi.array().items(Joi.string()),
-    Joi.string()
-  ),
+  tags: Joi.alternatives().try(Joi.array().items(Joi.string()), Joi.string()),
   category: Joi.string().allow(''),
   published: Joi.boolean(),
 });

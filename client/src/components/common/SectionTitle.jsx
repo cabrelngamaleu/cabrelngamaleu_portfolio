@@ -14,9 +14,7 @@ const SectionTitle = ({ title, subtitle }) => {
         {title}
       </h2>
       {subtitle && (
-        <p className="text-base md:text-lg text-textColor max-w-2xl mx-auto">
-          {subtitle}
-        </p>
+        <p className="text-base md:text-lg text-textColor max-w-2xl mx-auto">{subtitle}</p>
       )}
     </motion.div>
   );

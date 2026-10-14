@@ -12,7 +12,7 @@ const Header = ({ onMenuClick }) => {
   const getBreadcrumb = () => {
     const path = location.pathname;
     const segments = path.split('/').filter(Boolean);
-    
+
     const breadcrumbMap = {
       dashboard: "Vue d'ensemble",
       projects: 'Projets',
@@ -55,17 +55,11 @@ const Header = ({ onMenuClick }) => {
             {getBreadcrumb().map((crumb, index) => (
               <React.Fragment key={index}>
                 <span
-                  className={
-                    crumb.isLast
-                      ? 'text-designColor font-medium'
-                      : 'text-textColor/70'
-                  }
+                  className={crumb.isLast ? 'text-designColor font-medium' : 'text-textColor/70'}
                 >
                   {crumb.name}
                 </span>
-                {!crumb.isLast && (
-                  <FiChevronRight className="text-textColor/50" size={16} />
-                )}
+                {!crumb.isLast && <FiChevronRight className="text-textColor/50" size={16} />}
               </React.Fragment>
             ))}
           </nav>
@@ -81,9 +75,7 @@ const Header = ({ onMenuClick }) => {
               <FiUser className="text-designColor" size={18} />
             </div>
             <div className="hidden md:block text-left">
-              <p className="text-sm font-medium text-textColor">
-                {user?.username || 'Admin'}
-              </p>
+              <p className="text-sm font-medium text-textColor">{user?.username || 'Admin'}</p>
               <p className="text-xs text-textColor/60">{user?.role || 'Administrateur'}</p>
             </div>
           </button>
@@ -91,10 +83,7 @@ const Header = ({ onMenuClick }) => {
           {/* Dropdown menu */}
           {showDropdown && (
             <>
-              <div
-                className="fixed inset-0 z-10"
-                onClick={() => setShowDropdown(false)}
-              />
+              <div className="fixed inset-0 z-10" onClick={() => setShowDropdown(false)} />
               <div className="absolute right-0 mt-2 w-48 bg-bodyColor border border-designColor/20 rounded-lg shadow-lg z-20">
                 <div className="p-2">
                   <button

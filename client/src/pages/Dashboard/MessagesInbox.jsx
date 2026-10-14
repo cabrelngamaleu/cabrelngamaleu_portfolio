@@ -10,7 +10,7 @@ const MessagesInbox = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [error, setError] = useState('');
-  
+
   const messagesPerPage = 20;
 
   const fetchMessages = async () => {
@@ -18,9 +18,7 @@ const MessagesInbox = () => {
       setError('');
       const response = await api.get('/messages');
       // Sort by date descending
-      const sorted = response.data.sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      );
+      const sorted = response.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       setMessages(sorted);
       applyFilter(sorted, activeFilter);
     } catch (err) {
@@ -38,7 +36,7 @@ const MessagesInbox = () => {
 
   const applyFilter = (msgs, filter) => {
     let filtered = msgs;
-    
+
     switch (filter) {
       case 'unread':
         filtered = msgs.filter((msg) => !msg.read);
@@ -49,7 +47,7 @@ const MessagesInbox = () => {
       default:
         filtered = msgs;
     }
-    
+
     setFilteredMessages(filtered);
     setCurrentPage(1);
   };
@@ -63,14 +61,10 @@ const MessagesInbox = () => {
     try {
       // Optimistic update
       setMessages((prev) =>
-        prev.map((msg) =>
-          msg._id === messageId ? { ...msg, read: readStatus } : msg
-        )
+        prev.map((msg) => (msg._id === messageId ? { ...msg, read: readStatus } : msg))
       );
       setFilteredMessages((prev) =>
-        prev.map((msg) =>
-          msg._id === messageId ? { ...msg, read: readStatus } : msg
-        )
+        prev.map((msg) => (msg._id === messageId ? { ...msg, read: readStatus } : msg))
       );
 
       // API call
@@ -118,9 +112,7 @@ const MessagesInbox = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold gradient-text-green mb-2">
-            Boîte de réception
-          </h1>
+          <h1 className="text-3xl font-bold gradient-text-green mb-2">Boîte de réception</h1>
           <p className="text-textColor/70">
             {unreadCount > 0 ? `${unreadCount} message(s) non lu(s)` : 'Aucun nouveau message'}
           </p>

@@ -53,7 +53,9 @@
       "/node_modules/"
     ],
     "testTimeout": 30000,
-    "setupFilesAfterEnv": ["<rootDir>/tests/setup.js"],
+    "setupFilesAfterEnv": [
+      "<rootDir>/tests/setup.js"
+    ],
     "coverageThreshold": {
       "global": {
         "lines": 70,

@@ -4,7 +4,13 @@ import { FiLock } from 'react-icons/fi';
 import api from '../../services/api';
 
 const ChangePasswordForm = () => {
-  const { register, handleSubmit, formState: { errors }, watch, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+    reset,
+  } = useForm();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
@@ -38,9 +44,7 @@ const ChangePasswordForm = () => {
         <div className="w-10 h-10 rounded-lg bg-designColor/10 flex items-center justify-center">
           <FiLock className="text-designColor" size={20} />
         </div>
-        <h3 className="text-xl font-semibold text-textColor">
-          Changer le mot de passe
-        </h3>
+        <h3 className="text-xl font-semibold text-textColor">Changer le mot de passe</h3>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -62,7 +66,7 @@ const ChangePasswordForm = () => {
           </label>
           <input
             type="password"
-            {...register('oldPassword', { required: 'L\'ancien mot de passe est requis' })}
+            {...register('oldPassword', { required: "L'ancien mot de passe est requis" })}
             className="w-full px-4 py-2 bg-bodyColor border border-designColor/20 rounded-lg text-textColor focus:outline-none focus:border-designColor/50"
             placeholder="Entrez votre ancien mot de passe"
           />

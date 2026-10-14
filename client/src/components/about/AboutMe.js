@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const AboutMe = () => {
   return (
@@ -7,9 +7,11 @@ const AboutMe = () => {
         <div className="py-6">
           <h2 className="font-semibold mb-1">Salut! Je suis Cabrel Ngamaleu</h2>
           <p className="text-base leading-6 ">
-            Ingénieur logiciel justifiant de plus de 6 années d'expérience dans le développement d'applications web et mobiles.
-             Maîtrisant des technologies phares telles que Java, Angular, Laravel, flutter , React et Next.Js , je mets à profit mon expertise technique 
-             et ma créativité pour concevoir des solutions innovantes et conviviales. Doté d'excellentes aptitudes en communication et d'un esprit d'équipe affirmé.
+            Ingénieur logiciel justifiant de plus de 6 années d'expérience dans le développement
+            d'applications web et mobiles. Maîtrisant des technologies phares telles que Java,
+            Angular, Laravel, flutter , React et Next.Js , je mets à profit mon expertise technique
+            et ma créativité pour concevoir des solutions innovantes et conviviales. Doté
+            d'excellentes aptitudes en communication et d'un esprit d'équipe affirmé.
           </p>
         </div>
       </div>

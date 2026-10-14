@@ -50,10 +50,12 @@ npm start
 ## API Endpoints
 
 ### Authentication
+
 - `POST /api/auth/login` - Connexion
 - `PUT /api/auth/change-password` - Changement de mot de passe (protégé)
 
 ### Projects
+
 - `GET /api/projects` - Liste des projets (public)
 - `GET /api/projects/:id` - Détail d'un projet (public)
 - `POST /api/projects` - Créer un projet (admin)
@@ -61,6 +63,7 @@ npm start
 - `DELETE /api/projects/:id` - Supprimer un projet (admin)
 
 ### Blog
+
 - `GET /api/blog` - Liste des articles (public)
 - `GET /api/blog/:slug` - Détail d'un article (public)
 - `POST /api/blog` - Créer un article (admin)
@@ -68,12 +71,14 @@ npm start
 - `DELETE /api/blog/:id` - Supprimer un article (admin)
 
 ### Messages
+
 - `POST /api/messages` - Envoyer un message (public)
 - `GET /api/messages` - Liste des messages (admin)
 - `PATCH /api/messages/:id/read` - Marquer comme lu/non lu (admin)
 - `DELETE /api/messages/:id` - Supprimer un message (admin)
 
 ### Analytics
+
 - `POST /api/analytics/event` - Créer un événement (public)
 - `GET /api/analytics/dashboard` - Tableau de bord analytics (admin)
 

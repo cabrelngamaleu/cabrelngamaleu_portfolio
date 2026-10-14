@@ -30,7 +30,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Validation
     if (!formData.username || !formData.password) {
       setError('Veuillez remplir tous les champs');
@@ -42,7 +42,7 @@ const Login = () => {
 
     try {
       const result = await login(formData);
-      
+
       if (result.success) {
         navigate('/dashboard');
       } else {
@@ -65,12 +65,8 @@ const Login = () => {
       >
         <div className="glass-card p-8 rounded-xl">
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold gradient-text-green mb-2">
-              Connexion Admin
-            </h1>
-            <p className="text-textColor/70">
-              Accédez au tableau de bord
-            </p>
+            <h1 className="text-3xl font-bold gradient-text-green mb-2">Connexion Admin</h1>
+            <p className="text-textColor/70">Accédez au tableau de bord</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">

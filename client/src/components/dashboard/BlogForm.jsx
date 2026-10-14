@@ -10,7 +10,13 @@ import 'react-markdown-editor-lite/lib/index.css';
 const MdEditor = React.lazy(() => import('react-markdown-editor-lite'));
 
 const BlogForm = ({ post, onClose, onSuccess }) => {
-  const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    watch,
+  } = useForm({
     defaultValues: post || {
       title: '',
       slug: '',
@@ -56,7 +62,7 @@ const BlogForm = ({ post, onClose, onSuccess }) => {
     const file = e.target.files[0];
     if (file) {
       if (file.size > 5 * 1024 * 1024) {
-        setError('L\'image ne doit pas dépasser 5 Mo');
+        setError("L'image ne doit pas dépasser 5 Mo");
         return;
       }
       setCoverFile(file);
@@ -100,9 +106,13 @@ const BlogForm = ({ post, onClose, onSuccess }) => {
       const postData = {
         ...data,
         content: markdownContent,
-        tags: typeof data.tags === 'string' 
-          ? data.tags.split(',').map(t => t.trim()).filter(Boolean)
-          : data.tags,
+        tags:
+          typeof data.tags === 'string'
+            ? data.tags
+                .split(',')
+                .map((t) => t.trim())
+                .filter(Boolean)
+            : data.tags,
         coverImage: coverImageUrl,
       };
 
@@ -117,7 +127,7 @@ const BlogForm = ({ post, onClose, onSuccess }) => {
       onClose();
     } catch (err) {
       console.error('Erreur lors de la sauvegarde:', err);
-      setError(err.response?.data?.message || 'Erreur lors de la sauvegarde de l\'article');
+      setError(err.response?.data?.message || "Erreur lors de la sauvegarde de l'article");
     } finally {
       setLoading(false);
       setUploading(false);
@@ -136,7 +146,7 @@ const BlogForm = ({ post, onClose, onSuccess }) => {
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-designColor/20">
             <h2 className="text-2xl font-bold gradient-text-green">
-              {post ? 'Modifier l\'article' : 'Nouvel article'}
+              {post ? "Modifier l'article" : 'Nouvel article'}
             </h2>
             <button
               onClick={onClose}
@@ -147,7 +157,10 @@ const BlogForm = ({ post, onClose, onSuccess }) => {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-4 max-h-[calc(100vh-200px)] overflow-y-auto">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="p-6 space-y-4 max-h-[calc(100vh-200px)] overflow-y-auto"
+          >
             {error && (
               <div className="bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-lg text-sm">
                 {error}
@@ -157,9 +170,7 @@ const BlogForm = ({ post, onClose, onSuccess }) => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {/* Title */}
               <div>
-                <label className="block text-sm font-medium text-textColor mb-2">
-                  Titre *
-                </label>
+                <label className="block text-sm font-medium text-textColor mb-2">Titre *</label>
                 <input
                   {...register('title', { required: 'Le titre est requis' })}
                   className="w-full px-4 py-2 bg-bodyColor border border-designColor/20 rounded-lg text-textColor focus:outline-none focus:border-designColor/50"
@@ -172,25 +183,19 @@ const BlogForm = ({ post, onClose, onSuccess }) => {
 
               {/* Slug */}
               <div>
-                <label className="block text-sm font-medium text-textColor mb-2">
-                  Slug *
-                </label>
+                <label className="block text-sm font-medium text-textColor mb-2">Slug *</label>
                 <input
                   {...register('slug', { required: 'Le slug est requis' })}
                   className="w-full px-4 py-2 bg-bodyColor border border-designColor/20 rounded-lg text-textColor focus:outline-none focus:border-designColor/50"
                   placeholder="slug-de-article"
                 />
-                {errors.slug && (
-                  <p className="text-red-400 text-sm mt-1">{errors.slug.message}</p>
-                )}
+                {errors.slug && <p className="text-red-400 text-sm mt-1">{errors.slug.message}</p>}
               </div>
             </div>
 
             {/* Excerpt */}
             <div>
-              <label className="block text-sm font-medium text-textColor mb-2">
-                Extrait
-              </label>
+              <label className="block text-sm font-medium text-textColor mb-2">Extrait</label>
               <textarea
                 {...register('excerpt')}
                 rows={2}
@@ -236,7 +241,7 @@ const BlogForm = ({ post, onClose, onSuccess }) => {
               <label className="block text-sm font-medium text-textColor mb-2">
                 Image de couverture
               </label>
-              
+
               {coverPreview ? (
                 <div className="relative">
                   <img
@@ -281,9 +286,7 @@ const BlogForm = ({ post, onClose, onSuccess }) => {
 
               {/* Category */}
               <div>
-                <label className="block text-sm font-medium text-textColor mb-2">
-                  Catégorie
-                </label>
+                <label className="block text-sm font-medium text-textColor mb-2">Catégorie</label>
                 <input
                   {...register('category')}
                   className="w-full px-4 py-2 bg-bodyColor border border-designColor/20 rounded-lg text-textColor focus:outline-none focus:border-designColor/50"

@@ -10,27 +10,28 @@ const AboutSection = () => {
     {
       icon: FaCode,
       title: 'Développement Web',
-      description: 'Création d\'applications web modernes et performantes avec React, Node.js et les dernières technologies.',
+      description:
+        "Création d'applications web modernes et performantes avec React, Node.js et les dernières technologies.",
     },
     {
       icon: FaServer,
       title: 'Backend & API',
-      description: 'Conception et développement d\'APIs RESTful et GraphQL robustes et scalables.',
+      description: "Conception et développement d'APIs RESTful et GraphQL robustes et scalables.",
     },
     {
       icon: FaMobile,
       title: 'Applications Mobiles',
-      description: 'Développement d\'applications mobiles cross-platform avec React Native.',
+      description: "Développement d'applications mobiles cross-platform avec React Native.",
     },
     {
       icon: FaPalette,
       title: 'UI/UX Design',
-      description: 'Création d\'interfaces utilisateur intuitives et esthétiques.',
+      description: "Création d'interfaces utilisateur intuitives et esthétiques.",
     },
   ];
 
   const stats = [
-    { end: 6, suffix: '+', label: 'Ans d\'expérience' },
+    { end: 6, suffix: '+', label: "Ans d'expérience" },
     { end: 50, suffix: '+', label: 'Projets réalisés' },
     { end: 30, suffix: '+', label: 'Clients satisfaits' },
     { end: 100, suffix: '%', label: 'Engagement' },
@@ -62,12 +63,13 @@ const AboutSection = () => {
                 dans la création d'applications web et mobiles performantes et évolutives.
               </p>
               <p>
-                Ma passion pour la technologie m'a conduit à maîtriser un large éventail de technologies
-                modernes, du frontend avec React et TypeScript au backend avec Node.js et MongoDB.
+                Ma passion pour la technologie m'a conduit à maîtriser un large éventail de
+                technologies modernes, du frontend avec React et TypeScript au backend avec Node.js
+                et MongoDB.
               </p>
               <p>
-                Je m'efforce constamment d'apprendre et de rester à jour avec les dernières tendances
-                et meilleures pratiques du développement web.
+                Je m'efforce constamment d'apprendre et de rester à jour avec les dernières
+                tendances et meilleures pratiques du développement web.
               </p>
             </div>
           </GlassCard>
@@ -88,9 +90,7 @@ const AboutSection = () => {
                   <h4 className="text-xl font-titleFont font-bold text-textColor mb-3">
                     {service.title}
                   </h4>
-                  <p className="text-textColor/80 text-sm leading-relaxed">
-                    {service.description}
-                  </p>
+                  <p className="text-textColor/80 text-sm leading-relaxed">{service.description}</p>
                 </div>
               </GlassCard>
             ))}
@@ -105,12 +105,7 @@ const AboutSection = () => {
           <GlassCard>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {stats.map((stat, index) => (
-                <StatsCounter
-                  key={index}
-                  end={stat.end}
-                  suffix={stat.suffix}
-                  label={stat.label}
-                />
+                <StatsCounter key={index} end={stat.end} suffix={stat.suffix} label={stat.label} />
               ))}
             </div>
           </GlassCard>

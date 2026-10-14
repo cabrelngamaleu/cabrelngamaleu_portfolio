@@ -11,12 +11,12 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     const token = localStorage.getItem('token');
-    
+
     if (storedUser && token) {
       try {
         setUser(JSON.parse(storedUser));
       } catch (error) {
-        console.error('Erreur lors du chargement de l\'utilisateur:', error);
+        console.error("Erreur lors du chargement de l'utilisateur:", error);
         localStorage.removeItem('user');
         localStorage.removeItem('token');
       }
@@ -29,12 +29,12 @@ export const AuthProvider = ({ children }) => {
     try {
       const response = await api.post('/auth/login', credentials);
       const { token, user: userData } = response.data;
-      
+
       // Store token and user data
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(userData));
       setUser(userData);
-      
+
       return { success: true };
     } catch (error) {
       const message = error.response?.data?.message || 'Erreur de connexion';

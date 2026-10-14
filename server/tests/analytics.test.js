@@ -23,12 +23,10 @@ describe('Analytics API Tests', () => {
       role: 'admin',
     });
 
-    const loginRes = await request(app)
-      .post('/api/auth/login')
-      .send({
-        email: 'admin@test.com',
-        password: 'password123',
-      });
+    const loginRes = await request(app).post('/api/auth/login').send({
+      email: 'admin@test.com',
+      password: 'password123',
+    });
 
     token = loginRes.body.token;
   });
@@ -45,14 +43,12 @@ describe('Analytics API Tests', () => {
 
   describe('POST /api/analytics/event', () => {
     it('should create analytics event (public access)', async () => {
-      const res = await request(app)
-        .post('/api/analytics/event')
-        .send({
-          event: 'page_view',
-          page: '/home',
-          referrer: 'https://google.com',
-          userAgent: 'Mozilla/5.0',
-        });
+      const res = await request(app).post('/api/analytics/event').send({
+        event: 'page_view',
+        page: '/home',
+        referrer: 'https://google.com',
+        userAgent: 'Mozilla/5.0',
+      });
 
       expect(res.statusCode).toBe(201);
       expect(res.body.success).toBe(true);
@@ -61,12 +57,10 @@ describe('Analytics API Tests', () => {
     });
 
     it('should validate event type enum', async () => {
-      const res = await request(app)
-        .post('/api/analytics/event')
-        .send({
-          event: 'invalid_event',
-          page: '/home',
-        });
+      const res = await request(app).post('/api/analytics/event').send({
+        event: 'invalid_event',
+        page: '/home',
+      });
 
       expect(res.statusCode).toBe(400);
     });
@@ -75,12 +69,10 @@ describe('Analytics API Tests', () => {
       const validEvents = ['page_view', 'project_click', 'contact_submit'];
 
       for (const eventType of validEvents) {
-        const res = await request(app)
-          .post('/api/analytics/event')
-          .send({
-            event: eventType,
-            page: '/test',
-          });
+        const res = await request(app).post('/api/analytics/event').send({
+          event: eventType,
+          page: '/test',
+        });
 
         expect(res.statusCode).toBe(201);
         expect(res.body.data.event).toBe(eventType);
@@ -142,11 +134,11 @@ describe('Analytics API Tests', () => {
         .set('Authorization', `Bearer ${token}`);
 
       expect(res.statusCode).toBe(200);
-      
+
       const eventCounts = res.body.data.eventCounts;
       expect(eventCounts).toBeInstanceOf(Array);
-      
-      const pageViews = eventCounts.find(e => e._id === 'page_view');
+
+      const pageViews = eventCounts.find((e) => e._id === 'page_view');
       expect(pageViews).toBeDefined();
       expect(pageViews.count).toBe(3);
     });
@@ -157,11 +149,11 @@ describe('Analytics API Tests', () => {
         .set('Authorization', `Bearer ${token}`);
 
       expect(res.statusCode).toBe(200);
-      
+
       const topPages = res.body.data.topPages;
       expect(topPages).toBeInstanceOf(Array);
       expect(topPages.length).toBeGreaterThan(0);
-      
+
       // Should be sorted by count descending
       if (topPages.length > 1) {
         expect(topPages[0].count).toBeGreaterThanOrEqual(topPages[1].count);
@@ -174,7 +166,7 @@ describe('Analytics API Tests', () => {
         .set('Authorization', `Bearer ${token}`);
 
       expect(res.statusCode).toBe(200);
-      
+
       const visitsByDay = res.body.data.visitsByDay;
       expect(visitsByDay).toBeInstanceOf(Array);
     });

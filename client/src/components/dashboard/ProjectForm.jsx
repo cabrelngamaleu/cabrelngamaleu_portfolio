@@ -5,7 +5,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import api from '../../services/api';
 
 const ProjectForm = ({ project, onClose, onSuccess }) => {
-  const { register, handleSubmit, formState: { errors }, setValue, watch } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    watch,
+  } = useForm({
     defaultValues: project || {
       title: '',
       description: '',
@@ -38,7 +44,7 @@ const ProjectForm = ({ project, onClose, onSuccess }) => {
     const file = e.target.files[0];
     if (file) {
       if (file.size > 5 * 1024 * 1024) {
-        setError('L\'image ne doit pas dépasser 5 Mo');
+        setError("L'image ne doit pas dépasser 5 Mo");
         return;
       }
       setImageFile(file);
@@ -77,9 +83,13 @@ const ProjectForm = ({ project, onClose, onSuccess }) => {
       // Prepare project data
       const projectData = {
         ...data,
-        technologies: typeof data.technologies === 'string' 
-          ? data.technologies.split(',').map(t => t.trim()).filter(Boolean)
-          : data.technologies,
+        technologies:
+          typeof data.technologies === 'string'
+            ? data.technologies
+                .split(',')
+                .map((t) => t.trim())
+                .filter(Boolean)
+            : data.technologies,
         imageUrl,
         order: parseInt(data.order) || 0,
       };
@@ -125,7 +135,10 @@ const ProjectForm = ({ project, onClose, onSuccess }) => {
           </div>
 
           {/* Form */}
-          <form onSubmit={handleSubmit(onSubmit)} className="p-6 space-y-4 max-h-[calc(100vh-200px)] overflow-y-auto">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="p-6 space-y-4 max-h-[calc(100vh-200px)] overflow-y-auto"
+          >
             {error && (
               <div className="bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-lg text-sm">
                 {error}
@@ -134,17 +147,13 @@ const ProjectForm = ({ project, onClose, onSuccess }) => {
 
             {/* Title */}
             <div>
-              <label className="block text-sm font-medium text-textColor mb-2">
-                Titre *
-              </label>
+              <label className="block text-sm font-medium text-textColor mb-2">Titre *</label>
               <input
                 {...register('title', { required: 'Le titre est requis' })}
                 className="w-full px-4 py-2 bg-bodyColor border border-designColor/20 rounded-lg text-textColor focus:outline-none focus:border-designColor/50"
                 placeholder="Nom du projet"
               />
-              {errors.title && (
-                <p className="text-red-400 text-sm mt-1">{errors.title.message}</p>
-              )}
+              {errors.title && <p className="text-red-400 text-sm mt-1">{errors.title.message}</p>}
             </div>
 
             {/* Description */}
@@ -191,9 +200,7 @@ const ProjectForm = ({ project, onClose, onSuccess }) => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Category */}
               <div>
-                <label className="block text-sm font-medium text-textColor mb-2">
-                  Catégorie
-                </label>
+                <label className="block text-sm font-medium text-textColor mb-2">Catégorie</label>
                 <select
                   {...register('category')}
                   className="w-full px-4 py-2 bg-bodyColor border border-designColor/20 rounded-lg text-textColor focus:outline-none focus:border-designColor/50"
@@ -224,7 +231,7 @@ const ProjectForm = ({ project, onClose, onSuccess }) => {
               <label className="block text-sm font-medium text-textColor mb-2">
                 Image du projet
               </label>
-              
+
               {imagePreview ? (
                 <div className="relative">
                   <img
@@ -269,9 +276,7 @@ const ProjectForm = ({ project, onClose, onSuccess }) => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-textColor mb-2">
-                URL GitHub
-              </label>
+              <label className="block text-sm font-medium text-textColor mb-2">URL GitHub</label>
               <input
                 {...register('githubUrl')}
                 type="url"

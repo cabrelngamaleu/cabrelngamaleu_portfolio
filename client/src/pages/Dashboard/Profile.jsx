@@ -11,12 +11,8 @@ const Profile = () => {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold gradient-text-green mb-2">
-          Mon Profil
-        </h1>
-        <p className="text-textColor/70">
-          Gérez vos informations personnelles et votre sécurité
-        </p>
+        <h1 className="text-3xl font-bold gradient-text-green mb-2">Mon Profil</h1>
+        <p className="text-textColor/70">Gérez vos informations personnelles et votre sécurité</p>
       </div>
 
       {/* User info card */}
@@ -30,9 +26,7 @@ const Profile = () => {
             <FiUser className="text-designColor" size={32} />
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-textColor">
-              {user?.username || 'Admin'}
-            </h2>
+            <h2 className="text-2xl font-bold text-textColor">{user?.username || 'Admin'}</h2>
             <p className="text-textColor/70">{user?.role || 'Administrateur'}</p>
           </div>
         </div>

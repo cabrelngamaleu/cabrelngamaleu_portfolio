@@ -51,7 +51,9 @@ const Overview = () => {
         api.get('/projects'),
         api.get('/blog'),
         api.get('/messages?read=false'),
-        api.get('/analytics/dashboard').catch(() => ({ data: { totalViews: 0, visitsPerDay: [], projectsByCategory: [] } })),
+        api
+          .get('/analytics/dashboard')
+          .catch(() => ({ data: { totalViews: 0, visitsPerDay: [], projectsByCategory: [] } })),
       ]);
 
       // Set stats
@@ -83,7 +85,7 @@ const Overview = () => {
         const category = project.category || 'Autre';
         categoryCounts[category] = (categoryCounts[category] || 0) + 1;
       });
-      
+
       setProjectsData({
         labels: Object.keys(categoryCounts),
         datasets: [
@@ -104,7 +106,7 @@ const Overview = () => {
       // Blog posts: published vs drafts
       const publishedCount = posts.data.filter((post) => post.published).length;
       const draftCount = posts.data.length - publishedCount;
-      
+
       setPostsData({
         labels: ['Publiés', 'Brouillons'],
         datasets: [
@@ -173,12 +175,8 @@ const Overview = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold gradient-text-green mb-2">
-            Vue d'ensemble
-          </h1>
-          <p className="text-textColor/70">
-            Bienvenue sur votre tableau de bord
-          </p>
+          <h1 className="text-3xl font-bold gradient-text-green mb-2">Vue d'ensemble</h1>
+          <p className="text-textColor/70">Bienvenue sur votre tableau de bord</p>
         </div>
         <button
           onClick={handleRefresh}
@@ -210,12 +208,7 @@ const Overview = () => {
           icon={FiMail}
           loading={loading}
         />
-        <StatsCard
-          title="Total Vues"
-          value={stats.totalViews}
-          icon={FiEye}
-          loading={loading}
-        />
+        <StatsCard title="Total Vues" value={stats.totalViews} icon={FiEye} loading={loading} />
       </div>
 
       {/* Charts */}
@@ -227,9 +220,7 @@ const Overview = () => {
           transition={{ delay: 0.1 }}
           className="glass-card p-6 rounded-xl"
         >
-          <h3 className="text-lg font-semibold text-textColor mb-4">
-            Visites (30 derniers jours)
-          </h3>
+          <h3 className="text-lg font-semibold text-textColor mb-4">Visites (30 derniers jours)</h3>
           <div className="h-64">
             {loading ? (
               <div className="flex items-center justify-center h-full">
@@ -252,9 +243,7 @@ const Overview = () => {
           transition={{ delay: 0.2 }}
           className="glass-card p-6 rounded-xl"
         >
-          <h3 className="text-lg font-semibold text-textColor mb-4">
-            Projets par catégorie
-          </h3>
+          <h3 className="text-lg font-semibold text-textColor mb-4">Projets par catégorie</h3>
           <div className="h-64">
             {loading ? (
               <div className="flex items-center justify-center h-full">
@@ -278,9 +267,7 @@ const Overview = () => {
         transition={{ delay: 0.3 }}
         className="glass-card p-6 rounded-xl"
       >
-        <h3 className="text-lg font-semibold text-textColor mb-4">
-          Articles de blog
-        </h3>
+        <h3 className="text-lg font-semibold text-textColor mb-4">Articles de blog</h3>
         <div className="h-64 flex items-center justify-center">
           {loading ? (
             <div className="animate-pulse text-textColor/50">Chargement...</div>

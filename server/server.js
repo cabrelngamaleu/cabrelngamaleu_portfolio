@@ -11,12 +11,7 @@ validateEnv();
 const connectDB = require('./config/db');
 
 // Security middleware
-const {
-  applyHelmet,
-  applyCors,
-  applyMongoSanitize,
-  applyHPP,
-} = require('./middleware/security');
+const { applyHelmet, applyCors, applyMongoSanitize, applyHPP } = require('./middleware/security');
 const { generalLimiter } = require('./middleware/rateLimiter');
 const { errorHandler, notFound } = require('./middleware/errorHandler');
 
@@ -77,7 +72,9 @@ app.use(errorHandler);
 // Start server
 const PORT = process.env.PORT || 5000;
 const server = app.listen(PORT, () => {
-  console.log(`🚀 Serveur démarré sur le port ${PORT} en mode ${process.env.NODE_ENV || 'development'}`);
+  console.log(
+    `🚀 Serveur démarré sur le port ${PORT} en mode ${process.env.NODE_ENV || 'development'}`
+  );
 });
 
 // Handle unhandled promise rejections

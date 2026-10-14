@@ -64,6 +64,7 @@ git push https://github.com/cabrelngamaleu/cabrelngamaleu_portfolio.git main
 Une fois poussé, allez sur https://github.com/cabrelngamaleu/cabrelngamaleu_portfolio
 
 Vous devriez voir :
+
 - ✅ Structure monorepo (client/ et server/)
 - ✅ README.md mis à jour
 - ✅ GitHub Actions configurées
@@ -73,6 +74,7 @@ Vous devriez voir :
 ## 📝 Commits Locaux Prêts
 
 Vous avez actuellement 3 commits locaux prêts à être poussés :
+
 1. `feat: full-stack portfolio with admin dashboard and CI/CD`
 2. `docs: add setup instructions and environment configuration`
 3. `docs: add implementation recap and finalize setup`
@@ -82,6 +84,7 @@ Vous avez actuellement 3 commits locaux prêts à être poussés :
 ---
 
 Après le push, suivez les instructions dans **SETUP_INSTRUCTIONS.md** pour :
+
 - Installer les dépendances
 - Configurer MongoDB, Cloudinary, Email
 - Tester localement

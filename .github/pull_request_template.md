@@ -27,7 +27,6 @@
 
 **Détails des tests :**
 
-
 ## Couverture de tests
 
 <!-- Pour les nouvelles fonctionnalités, vérifiez la couverture de tests -->
@@ -39,7 +38,6 @@
 ## Captures d'écran (si applicable)
 
 <!-- Ajoutez des captures d'écran pour les changements d'interface utilisateur -->
-
 
 ## Checklist
 
@@ -68,7 +66,6 @@
 ## Notes supplémentaires
 
 <!-- Toute information supplémentaire pour les reviewers -->
-
 
 ## Reviewer Guidelines
 

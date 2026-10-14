@@ -27,14 +27,14 @@ const ProjectsSection = () => {
       setLoading(true);
       const response = await api.get('/projects');
       const data = response.data;
-      
+
       // Sort by featured first, then by order
       const sortedProjects = data.sort((a, b) => {
         if (a.featured && !b.featured) return -1;
         if (!a.featured && b.featured) return 1;
         return (a.order || 0) - (b.order || 0);
       });
-      
+
       setProjects(sortedProjects);
       setError(null);
     } catch (err) {
@@ -49,9 +49,7 @@ const ProjectsSection = () => {
     if (activeCategory === 'Tous') {
       setFilteredProjects(projects);
     } else {
-      setFilteredProjects(
-        projects.filter((project) => project.category === activeCategory)
-      );
+      setFilteredProjects(projects.filter((project) => project.category === activeCategory));
     }
   };
 
@@ -63,10 +61,7 @@ const ProjectsSection = () => {
     return (
       <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle
-            title="Mes Projets"
-            subtitle="Découvrez mes réalisations récentes"
-          />
+          <SectionTitle title="Mes Projets" subtitle="Découvrez mes réalisations récentes" />
           <LoadingSpinner size="lg" className="my-20" />
         </div>
       </section>
@@ -77,10 +72,7 @@ const ProjectsSection = () => {
     return (
       <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <SectionTitle
-            title="Mes Projets"
-            subtitle="Découvrez mes réalisations récentes"
-          />
+          <SectionTitle title="Mes Projets" subtitle="Découvrez mes réalisations récentes" />
           <div className="text-center py-20">
             <p className="text-textColor/80 text-lg">{error}</p>
           </div>
@@ -92,10 +84,7 @@ const ProjectsSection = () => {
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <SectionTitle
-          title="Mes Projets"
-          subtitle="Découvrez mes réalisations récentes"
-        />
+        <SectionTitle title="Mes Projets" subtitle="Découvrez mes réalisations récentes" />
 
         <ProjectFilter
           categories={categories}
@@ -105,9 +94,7 @@ const ProjectsSection = () => {
 
         {filteredProjects.length === 0 ? (
           <div className="text-center py-20">
-            <p className="text-textColor/80 text-lg">
-              Aucun projet dans cette catégorie.
-            </p>
+            <p className="text-textColor/80 text-lg">Aucun projet dans cette catégorie.</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

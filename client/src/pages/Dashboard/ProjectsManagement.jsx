@@ -98,12 +98,10 @@ const ProjectsManagement = () => {
 
         // Update each project's order
         await Promise.all(
-          updates.map((update) =>
-            api.put(`/projects/${update.id}`, { order: update.order })
-          )
+          updates.map((update) => api.put(`/projects/${update.id}`, { order: update.order }))
         );
       } catch (err) {
-        console.error('Erreur lors de la mise à jour de l\'ordre:', err);
+        console.error("Erreur lors de la mise à jour de l'ordre:", err);
         // Revert on error
         fetchProjects();
       }
@@ -115,12 +113,8 @@ const ProjectsManagement = () => {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold gradient-text-green mb-2">
-            Gestion des Projets
-          </h1>
-          <p className="text-textColor/70">
-            Gérez vos projets et leur ordre d'affichage
-          </p>
+          <h1 className="text-3xl font-bold gradient-text-green mb-2">Gestion des Projets</h1>
+          <p className="text-textColor/70">Gérez vos projets et leur ordre d'affichage</p>
         </div>
         <button
           onClick={handleAddProject}
@@ -146,15 +140,8 @@ const ProjectsManagement = () => {
       )}
 
       {/* Projects list with drag & drop */}
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-      >
-        <SortableContext
-          items={projects.map((p) => p._id)}
-          strategy={rectSortingStrategy}
-        >
+      <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+        <SortableContext items={projects.map((p) => p._id)} strategy={rectSortingStrategy}>
           <ProjectList
             projects={projects}
             onEdit={handleEditProject}

@@ -1,8 +1,8 @@
-import React from "react";
-import ResumeTitle from "./ResumeTitle";
-import { MdWork } from "react-icons/md";
-import { GiGraduateCap } from "react-icons/gi";
-import ResumeCard from "./ResumeCard";
+import React from 'react';
+import ResumeTitle from './ResumeTitle';
+import { MdWork } from 'react-icons/md';
+import { GiGraduateCap } from 'react-icons/gi';
+import ResumeCard from './ResumeCard';
 
 const Education = () => {
   return (

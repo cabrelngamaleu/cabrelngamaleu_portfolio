@@ -12,6 +12,7 @@
 ## 📋 Ton Projet Vercel Existant
 
 Tu as déjà un projet Vercel connecté à ton GitHub :
+
 - **URL** : https://cabrelngamaleu-portfolio.vercel.app/
 - **Repo** : https://github.com/cabrelngamaleu/cabrelngamaleu_portfolio
 
@@ -62,7 +63,7 @@ Tu as déjà un projet Vercel connecté à ton GitHub :
    - **Cloud Name** : `dxxxxxxxxx`
    - **API Key** : `123456789012345`
    - **API Secret** : `xxxx-xxxxxxxxxxxxxx`
-   
+
 5. Copie ces 3 valeurs (tu en auras besoin)
 
 ### Étape 3 : Configurer Gmail pour les Emails (Gratuit)
@@ -95,23 +96,23 @@ Copie la longue chaîne générée (ex: `a7f8e9d6c5b4a3f2e1d0c9b8a7f6e5d4...`)
 
 #### Variables d'Environnement :
 
-| Name | Value | Environment |
-|------|-------|-------------|
-| `NODE_ENV` | `production` | Production |
-| `MONGODB_URI` | `mongodb+srv://cabrel:TON_MOT_DE_PASSE@portfoliocluster.xxxxx.mongodb.net/portfolio?retryWrites=true&w=majority` | Production |
-| `JWT_SECRET` | La clé que tu as générée avec Node | Production |
-| `JWT_EXPIRE` | `24h` | Production |
-| `CLOUDINARY_CLOUD_NAME` | Ton Cloud Name de Cloudinary | Production |
-| `CLOUDINARY_API_KEY` | Ton API Key de Cloudinary | Production |
-| `CLOUDINARY_API_SECRET` | Ton API Secret de Cloudinary | Production |
-| `EMAIL_HOST` | `smtp.gmail.com` | Production |
-| `EMAIL_PORT` | `587` | Production |
-| `EMAIL_USER` | `ton_email@gmail.com` | Production |
-| `EMAIL_PASS` | Le mot de passe d'application de 16 caractères | Production |
-| `EMAIL_FROM` | `noreply@cabrelngamaleu.com` | Production |
-| `ADMIN_EMAIL` | `ton_email@gmail.com` | Production |
-| `FRONTEND_URL` | `https://cabrelngamaleu-portfolio.vercel.app` | Production |
-| `REACT_APP_API_URL` | `https://cabrelngamaleu-portfolio.vercel.app/api` | Production |
+| Name                    | Value                                                                                                            | Environment |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------------- | ----------- |
+| `NODE_ENV`              | `production`                                                                                                     | Production  |
+| `MONGODB_URI`           | `mongodb+srv://cabrel:TON_MOT_DE_PASSE@portfoliocluster.xxxxx.mongodb.net/portfolio?retryWrites=true&w=majority` | Production  |
+| `JWT_SECRET`            | La clé que tu as générée avec Node                                                                               | Production  |
+| `JWT_EXPIRE`            | `24h`                                                                                                            | Production  |
+| `CLOUDINARY_CLOUD_NAME` | Ton Cloud Name de Cloudinary                                                                                     | Production  |
+| `CLOUDINARY_API_KEY`    | Ton API Key de Cloudinary                                                                                        | Production  |
+| `CLOUDINARY_API_SECRET` | Ton API Secret de Cloudinary                                                                                     | Production  |
+| `EMAIL_HOST`            | `smtp.gmail.com`                                                                                                 | Production  |
+| `EMAIL_PORT`            | `587`                                                                                                            | Production  |
+| `EMAIL_USER`            | `ton_email@gmail.com`                                                                                            | Production  |
+| `EMAIL_PASS`            | Le mot de passe d'application de 16 caractères                                                                   | Production  |
+| `EMAIL_FROM`            | `noreply@cabrelngamaleu.com`                                                                                     | Production  |
+| `ADMIN_EMAIL`           | `ton_email@gmail.com`                                                                                            | Production  |
+| `FRONTEND_URL`          | `https://cabrelngamaleu-portfolio.vercel.app`                                                                    | Production  |
+| `REACT_APP_API_URL`     | `https://cabrelngamaleu-portfolio.vercel.app/api`                                                                | Production  |
 
 5. Sauvegarde tout
 
@@ -132,6 +133,7 @@ Dans **Settings** :
 ### Étape 7 : Push vers GitHub et Déploiement Auto
 
 1. Commit et push ton code :
+
    ```bash
    git add vercel.json VERCEL_DEPLOYMENT.md client/package.json
    git commit -m "feat: configure Vercel deployment with serverless backend"
@@ -153,6 +155,7 @@ Dans **Settings** :
 Visite : https://cabrelngamaleu-portfolio.vercel.app/
 
 Tu devrais voir :
+
 - ✅ Ton portfolio avec le nouveau design glassmorphism
 - ✅ Toutes les sections (Hero, About, Skills, Projects, Blog, Contact)
 - ✅ Animations fonctionnelles
@@ -160,6 +163,7 @@ Tu devrais voir :
 ### Test Backend API
 
 Teste l'API dans le navigateur :
+
 - https://cabrelngamaleu-portfolio.vercel.app/api/projects
 - https://cabrelngamaleu-portfolio.vercel.app/api/blog
 
@@ -185,6 +189,7 @@ curl -X POST https://cabrelngamaleu-portfolio.vercel.app/api/auth/register \
 ```
 
 Ou utilise **Postman** :
+
 - URL : `POST https://cabrelngamaleu-portfolio.vercel.app/api/auth/register`
 - Headers : `Content-Type: application/json`
 - Body (raw JSON) :
@@ -244,6 +249,7 @@ Retourne dans **Settings** → **Environment Variables** et vérifie que TOUTES 
 ### Domaine Personnalisé (Optionnel)
 
 Si tu veux ton propre domaine (ex: cabrelngamaleu.com) :
+
 1. Achète un domaine (Namecheap, Google Domains)
 2. Dans Vercel : **Settings** → **Domains**
 3. Ajoute ton domaine
@@ -252,12 +258,14 @@ Si tu veux ton propre domaine (ex: cabrelngamaleu.com) :
 ### Prévisualisation des PR
 
 Quand tu créeras des Pull Requests sur GitHub :
+
 - Vercel créera automatiquement une prévisualisation
 - URL unique pour tester avant de merger
 
 ### Rollback Rapide
 
 Si une version a un bug :
+
 1. Va dans "Deployments"
 2. Trouve une version qui marchait
 3. Clique sur les 3 points → "Promote to Production"
@@ -283,6 +291,7 @@ Si une version a un bug :
 ## 🎉 Félicitations !
 
 Ton portfolio full-stack est en ligne avec :
+
 - ✅ Frontend React moderne
 - ✅ Backend Node.js serverless
 - ✅ Base de données MongoDB cloud

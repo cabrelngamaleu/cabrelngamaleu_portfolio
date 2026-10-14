@@ -34,7 +34,8 @@ const StatsCounter = ({ end, duration = 2000, suffix = '', label }) => {
   return (
     <div ref={ref} className="text-center">
       <div className="text-4xl md:text-5xl font-bold text-designColor mb-2">
-        {count}{suffix}
+        {count}
+        {suffix}
       </div>
       <div className="text-textColor/80 text-sm md:text-base">{label}</div>
     </div>

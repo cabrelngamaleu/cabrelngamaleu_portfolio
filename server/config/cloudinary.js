@@ -33,7 +33,7 @@ const deleteFromCloudinary = async (publicId) => {
   try {
     await cloudinary.uploader.destroy(publicId);
   } catch (error) {
-    console.error('Erreur lors de la suppression de l\'image:', error);
+    console.error("Erreur lors de la suppression de l'image:", error);
   }
 };
 

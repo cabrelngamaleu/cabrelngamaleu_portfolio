@@ -12,26 +12,26 @@ jobs:
   lint:
     name: Lint Code
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Lint client
         run: npm run lint:client
-      
+
       - name: Lint server
         run: npm run lint:server
-      
+
       - name: Check formatting with Prettier
         run: npx prettier --check "**/*.{js,jsx,json,md}"
 
@@ -41,25 +41,25 @@ jobs:
     strategy:
       matrix:
         node-version: [18, 20]
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Run client tests
         run: npm run test:client -- --coverage --watchAll=false
         env:
           CI: true
-      
+
       - name: Upload client coverage
         uses: actions/upload-artifact@v4
         if: matrix.node-version == 18
@@ -73,20 +73,20 @@ jobs:
     strategy:
       matrix:
         node-version: [18, 20]
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Setup Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Run server tests with coverage
         run: npm run test:server -- --coverage
         env:
@@ -94,7 +94,7 @@ jobs:
           NODE_ENV: test
           MONGODB_URI: mongodb://localhost:27017/portfolio_test
           JWT_SECRET: test-jwt-secret-minimum-32-characters-long-for-testing
-      
+
       - name: Check coverage threshold
         run: |
           cd server
@@ -104,7 +104,7 @@ jobs:
           NODE_ENV: test
           MONGODB_URI: mongodb://localhost:27017/portfolio_test
           JWT_SECRET: test-jwt-secret-minimum-32-characters-long-for-testing
-      
+
       - name: Upload server coverage
         uses: actions/upload-artifact@v4
         if: matrix.node-version == 18
@@ -115,32 +115,32 @@ jobs:
   security:
     name: Security Audit
     runs-on: ubuntu-latest
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Run npm audit on client
         run: |
           cd client
           npm audit --audit-level=high
         continue-on-error: true
-      
+
       - name: Run npm audit on server
         run: |
           cd server
           npm audit --audit-level=high
         continue-on-error: true
-      
+
       - name: Run Snyk security scan
         uses: snyk/actions/node@master
         continue-on-error: true
@@ -153,23 +153,23 @@ jobs:
     name: Build Application
     runs-on: ubuntu-latest
     needs: [lint, test-client, test-server]
-    
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '18'
           cache: 'npm'
-      
+
       - name: Install dependencies
         run: npm ci
-      
+
       - name: Build client
         run: npm run build:client
-      
+
       - name: Build verification
         run: |
           if [ ! -d "client/build" ]; then
@@ -177,7 +177,7 @@ jobs:
             exit 1
           fi
           echo "Build completed successfully"
-      
+
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:

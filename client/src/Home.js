@@ -1,17 +1,17 @@
-import React, { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { FaUser, FaEnvelope } from "react-icons/fa";
-import { IoIosPaper } from "react-icons/io";
-import { MdWork, MdOutlineClose } from "react-icons/md";
-import { SiGooglechat } from "react-icons/si";
-import { BsTelephonePlusFill } from "react-icons/bs";
-import Left from "./components/home/Left";
-import About from "./components/about/About";
-import Resume from "./components/resume/Resume";
-import Projects from "./components/projects/Projects";
-import Blog from "./components/blog/Blog";
-import Contact from "./components/contact/Contact";
-import Sidenav from "./components/home/sidenav/Sidenav";
+import React, { useEffect, useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { FaUser, FaEnvelope } from 'react-icons/fa';
+import { IoIosPaper } from 'react-icons/io';
+import { MdWork, MdOutlineClose } from 'react-icons/md';
+import { SiGooglechat } from 'react-icons/si';
+import { BsTelephonePlusFill } from 'react-icons/bs';
+import Left from './components/home/Left';
+import About from './components/about/About';
+import Resume from './components/resume/Resume';
+import Projects from './components/projects/Projects';
+import Blog from './components/blog/Blog';
+import Contact from './components/contact/Contact';
+import Sidenav from './components/home/sidenav/Sidenav';
 
 const Home = () => {
   const [about, setAbout] = useState(true);
@@ -23,7 +23,7 @@ const Home = () => {
   const ref = useRef();
 
   useEffect(() => {
-    document.body.addEventListener("click", (e) => {
+    document.body.addEventListener('click', (e) => {
       if (e.target.contains(ref.current)) {
         setSidenav(false);
       }
@@ -82,8 +82,8 @@ const Home = () => {
             }
             className={`${
               about
-                ? "text-designColor"
-                : "w-full h-6 text-textColor text-xl flex items-center justify-center hover:text-designColor duration-300 cursor-pointer relative group"
+                ? 'text-designColor'
+                : 'w-full h-6 text-textColor text-xl flex items-center justify-center hover:text-designColor duration-300 cursor-pointer relative group'
             } w-full h-6 text-xl flex items-center justify-center hover:text-designColor duration-300 cursor-pointer relative group`}
             // className="w-full h-6 text-textColor text-xl flex items-center justify-center hover:text-designColor duration-300 cursor-pointer relative group"
           >
@@ -103,8 +103,8 @@ const Home = () => {
             }
             className={`${
               resume
-                ? "text-designColor"
-                : "w-full h-6 text-textColor text-xl flex items-center justify-center hover:text-designColor duration-300 cursor-pointer relative group"
+                ? 'text-designColor'
+                : 'w-full h-6 text-textColor text-xl flex items-center justify-center hover:text-designColor duration-300 cursor-pointer relative group'
             } w-full h-6 text-xl flex items-center justify-center hover:text-designColor duration-300 cursor-pointer relative group`}
           >
             <IoIosPaper />
@@ -123,8 +123,8 @@ const Home = () => {
             }
             className={`${
               projects
-                ? "text-designColor"
-                : "w-full h-6 text-textColor text-xl flex items-center justify-center hover:text-designColor duration-300 cursor-pointer relative group"
+                ? 'text-designColor'
+                : 'w-full h-6 text-textColor text-xl flex items-center justify-center hover:text-designColor duration-300 cursor-pointer relative group'
             } w-full h-6 text-xl flex items-center justify-center hover:text-designColor duration-300 cursor-pointer relative group`}
           >
             <MdWork />
@@ -143,8 +143,8 @@ const Home = () => {
             }
             className={`${
               blog
-                ? "text-designColor"
-                : "w-full h-6 text-textColor text-xl flex items-center justify-center hover:text-designColor duration-300 cursor-pointer relative group"
+                ? 'text-designColor'
+                : 'w-full h-6 text-textColor text-xl flex items-center justify-center hover:text-designColor duration-300 cursor-pointer relative group'
             } w-full h-6 text-xl flex items-center justify-center hover:text-designColor duration-300 cursor-pointer relative group`}
           >
             <SiGooglechat />
@@ -163,8 +163,8 @@ const Home = () => {
             }
             className={`${
               contact
-                ? "text-designColor"
-                : "w-full h-6 text-textColor text-xl flex items-center justify-center hover:text-designColor duration-300 cursor-pointer relative group"
+                ? 'text-designColor'
+                : 'w-full h-6 text-textColor text-xl flex items-center justify-center hover:text-designColor duration-300 cursor-pointer relative group'
             } w-full h-6 text-xl flex items-center justify-center hover:text-designColor duration-300 cursor-pointer relative group`}
           >
             <FaEnvelope />

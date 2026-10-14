@@ -24,12 +24,10 @@ describe('Blog API Tests', () => {
       role: 'admin',
     });
 
-    const loginRes = await request(app)
-      .post('/api/auth/login')
-      .send({
-        email: 'admin@test.com',
-        password: 'password123',
-      });
+    const loginRes = await request(app).post('/api/auth/login').send({
+      email: 'admin@test.com',
+      password: 'password123',
+    });
 
     token = loginRes.body.token;
   });
@@ -101,7 +99,7 @@ describe('Blog API Tests', () => {
         .post('/api/blog')
         .set('Authorization', `Bearer ${token}`)
         .field('title', 'Mon Nouvel Article')
-        .field('content', 'Contenu de l\'article')
+        .field('content', "Contenu de l'article")
         .field('published', 'true');
 
       expect(res.statusCode).toBe(201);
@@ -123,12 +121,10 @@ describe('Blog API Tests', () => {
     });
 
     it('should reject post without auth', async () => {
-      const res = await request(app)
-        .post('/api/blog')
-        .send({
-          title: 'Unauthorized Post',
-          content: 'Content',
-        });
+      const res = await request(app).post('/api/blog').send({
+        title: 'Unauthorized Post',
+        content: 'Content',
+      });
 
       expect(res.statusCode).toBe(401);
     });

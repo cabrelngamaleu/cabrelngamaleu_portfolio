@@ -28,12 +28,10 @@ describe('Messages API Tests', () => {
       role: 'admin',
     });
 
-    const loginRes = await request(app)
-      .post('/api/auth/login')
-      .send({
-        email: 'admin@test.com',
-        password: 'password123',
-      });
+    const loginRes = await request(app).post('/api/auth/login').send({
+      email: 'admin@test.com',
+      password: 'password123',
+    });
 
     token = loginRes.body.token;
   });
@@ -41,7 +39,7 @@ describe('Messages API Tests', () => {
   beforeEach(async () => {
     await Message.deleteMany();
     sendEmail.mockClear();
-    
+
     testMessage = await Message.create({
       name: 'John Doe',
       email: 'john@example.com',
@@ -60,13 +58,11 @@ describe('Messages API Tests', () => {
     it('should create message and send email', async () => {
       sendEmail.mockResolvedValue({ messageId: 'test-id' });
 
-      const res = await request(app)
-        .post('/api/messages')
-        .send({
-          name: 'Jane Doe',
-          email: 'jane@example.com',
-          message: 'Hello, this is a test message',
-        });
+      const res = await request(app).post('/api/messages').send({
+        name: 'Jane Doe',
+        email: 'jane@example.com',
+        message: 'Hello, this is a test message',
+      });
 
       expect(res.statusCode).toBe(201);
       expect(res.body.success).toBe(true);
@@ -77,36 +73,30 @@ describe('Messages API Tests', () => {
     it('should create message even if email fails', async () => {
       sendEmail.mockRejectedValue(new Error('Email failed'));
 
-      const res = await request(app)
-        .post('/api/messages')
-        .send({
-          name: 'Test User',
-          email: 'test@example.com',
-          message: 'Test message',
-        });
+      const res = await request(app).post('/api/messages').send({
+        name: 'Test User',
+        email: 'test@example.com',
+        message: 'Test message',
+      });
 
       expect(res.statusCode).toBe(201);
       expect(res.body.success).toBe(true);
     });
 
     it('should reject message without required fields', async () => {
-      const res = await request(app)
-        .post('/api/messages')
-        .send({
-          name: 'Test User',
-        });
+      const res = await request(app).post('/api/messages').send({
+        name: 'Test User',
+      });
 
       expect(res.statusCode).toBe(400);
     });
 
     it('should reject message with invalid email', async () => {
-      const res = await request(app)
-        .post('/api/messages')
-        .send({
-          name: 'Test User',
-          email: 'invalid-email',
-          message: 'Test message',
-        });
+      const res = await request(app).post('/api/messages').send({
+        name: 'Test User',
+        email: 'invalid-email',
+        message: 'Test message',
+      });
 
       expect(res.statusCode).toBe(400);
     });
@@ -120,9 +110,7 @@ describe('Messages API Tests', () => {
     });
 
     it('should get all messages with auth', async () => {
-      const res = await request(app)
-        .get('/api/messages')
-        .set('Authorization', `Bearer ${token}`);
+      const res = await request(app).get('/api/messages').set('Authorization', `Bearer ${token}`);
 
       expect(res.statusCode).toBe(200);
       expect(res.body.success).toBe(true);
@@ -138,9 +126,7 @@ describe('Messages API Tests', () => {
         read: true,
       });
 
-      const res = await request(app)
-        .get('/api/messages')
-        .set('Authorization', `Bearer ${token}`);
+      const res = await request(app).get('/api/messages').set('Authorization', `Bearer ${token}`);
 
       expect(res.statusCode).toBe(200);
       // Unread messages should come first

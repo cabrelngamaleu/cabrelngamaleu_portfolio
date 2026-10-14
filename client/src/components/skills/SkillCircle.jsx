@@ -20,11 +20,7 @@ const SkillCircle = ({ percentage, size = 120 }) => {
 
   return (
     <div ref={ref} className="relative" style={{ width: size, height: size }}>
-      <svg
-        className="transform -rotate-90"
-        width={size}
-        height={size}
-      >
+      <svg className="transform -rotate-90" width={size} height={size}>
         {/* Background circle */}
         <circle
           cx={size / 2}

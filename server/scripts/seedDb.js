@@ -36,7 +36,8 @@ const seedDatabase = async () => {
       {
         title: 'Application E-commerce',
         description: 'Plateforme de vente en ligne avec panier et paiement',
-        longDescription: 'Application e-commerce complète avec gestion des produits, panier et intégration Stripe.',
+        longDescription:
+          'Application e-commerce complète avec gestion des produits, panier et intégration Stripe.',
         technologies: ['React', 'Redux', 'Node.js', 'Stripe', 'PostgreSQL'],
         category: 'web',
         featured: true,

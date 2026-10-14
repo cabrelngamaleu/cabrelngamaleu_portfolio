@@ -36,12 +36,7 @@ const Sidebar = ({ isOpen, onClose }) => {
   return (
     <>
       {/* Mobile overlay */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
-          onClick={onClose}
-        />
-      )}
+      {isOpen && <div className="fixed inset-0 bg-black/50 z-40 lg:hidden" onClick={onClose} />}
 
       {/* Sidebar */}
       <motion.aside
@@ -57,9 +52,7 @@ const Sidebar = ({ isOpen, onClose }) => {
       >
         {/* Logo and close button */}
         <div className="flex items-center justify-between p-6 border-b border-designColor/20">
-          <h2 className="text-xl font-bold gradient-text-green">
-            CN Admin
-          </h2>
+          <h2 className="text-xl font-bold gradient-text-green">CN Admin</h2>
           <button
             onClick={onClose}
             className="lg:hidden text-textColor hover:text-designColor transition-colors"

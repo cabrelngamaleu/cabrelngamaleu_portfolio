@@ -53,6 +53,7 @@ Portfolio professionnel avec interface publique élégante et dashboard d'admini
 ## 🚀 Fonctionnalités
 
 ### Interface Publique
+
 - Page d'accueil avec sections : À propos, Compétences, Projets, Blog, Contact
 - Visualisation des projets avec filtres par catégorie
 - Articles de blog avec support Markdown
@@ -60,6 +61,7 @@ Portfolio professionnel avec interface publique élégante et dashboard d'admini
 - Animations et transitions fluides
 
 ### Dashboard Administrateur
+
 - **Vue d'ensemble** : Statistiques et graphiques (Chart.js)
 - **Gestion des projets** : CRUD complet avec upload d'images et réorganisation drag & drop
 - **Gestion du blog** : Éditeur Markdown avec prévisualisation en temps réel
@@ -71,38 +73,42 @@ Portfolio professionnel avec interface publique élégante et dashboard d'admini
 ## 🛠️ Stack Technique
 
 ### Frontend
-| Technologie | Version | Usage |
-|------------|---------|-------|
-| React | 18.2 | Framework UI |
-| Tailwind CSS | 3.2 | Styling |
-| Framer Motion | 8.5 | Animations |
-| React Router | 6.20 | Routing |
-| Axios | 1.2 | Requêtes HTTP |
-| Chart.js | 4.4 | Graphiques |
-| React Hook Form | 7.49 | Gestion de formulaires |
+
+| Technologie     | Version | Usage                  |
+| --------------- | ------- | ---------------------- |
+| React           | 18.2    | Framework UI           |
+| Tailwind CSS    | 3.2     | Styling                |
+| Framer Motion   | 8.5     | Animations             |
+| React Router    | 6.20    | Routing                |
+| Axios           | 1.2     | Requêtes HTTP          |
+| Chart.js        | 4.4     | Graphiques             |
+| React Hook Form | 7.49    | Gestion de formulaires |
 
 ### Backend
-| Technologie | Version | Usage |
-|------------|---------|-------|
-| Node.js | 18+ | Runtime |
-| Express | 4.18 | Framework serveur |
-| MongoDB | Atlas | Base de données |
-| Mongoose | 8.0 | ODM |
-| JWT | 9.0 | Authentification |
-| Bcrypt | 5.1 | Hashage mots de passe |
+
+| Technologie | Version | Usage                 |
+| ----------- | ------- | --------------------- |
+| Node.js     | 18+     | Runtime               |
+| Express     | 4.18    | Framework serveur     |
+| MongoDB     | Atlas   | Base de données       |
+| Mongoose    | 8.0     | ODM                   |
+| JWT         | 9.0     | Authentification      |
+| Bcrypt      | 5.1     | Hashage mots de passe |
 
 ### DevOps & Sécurité
-| Technologie | Usage |
-|------------|-------|
-| Docker | Conteneurisation |
-| GitHub Actions | CI/CD |
-| Helmet.js | Headers HTTP sécurisés |
-| CORS | Politique CORS |
-| Rate Limiter | Protection DDoS |
-| Joi | Validation des entrées |
+
+| Technologie    | Usage                      |
+| -------------- | -------------------------- |
+| Docker         | Conteneurisation           |
+| GitHub Actions | CI/CD                      |
+| Helmet.js      | Headers HTTP sécurisés     |
+| CORS           | Politique CORS             |
+| Rate Limiter   | Protection DDoS            |
+| Joi            | Validation des entrées     |
 | Mongo Sanitize | Protection NoSQL injection |
 
 ### Services Externes
+
 - **Cloudinary** : Stockage et optimisation d'images
 - **Nodemailer** : Envoi d'emails
 - **MongoDB Atlas** : Base de données cloud
@@ -238,6 +244,7 @@ npm run seed --workspace=server
 ```
 
 **Identifiants admin par défaut** (à changer après première connexion) :
+
 - Username : `admin`
 - Password : `admin123`
 
@@ -448,6 +455,7 @@ Le projet inclut 3 workflows automatiques :
    - Bloque les PR avec vulnérabilités critiques
 
 **Configuration des secrets GitHub** :
+
 - `DOCKER_USERNAME` : Nom d'utilisateur Docker Hub
 - `DOCKER_PASSWORD` : Token Docker Hub
 - `SNYK_TOKEN` : Token Snyk (optionnel)
@@ -459,6 +467,7 @@ Le projet inclut 3 workflows automatiques :
 ### Endpoints principaux
 
 #### Authentification
+
 ```
 POST   /api/auth/register      # Inscription (admin uniquement)
 POST   /api/auth/login         # Connexion
@@ -468,6 +477,7 @@ GET    /api/auth/me            # Profil utilisateur
 ```
 
 #### Projets
+
 ```
 GET    /api/projects           # Liste des projets
 GET    /api/projects/:id       # Détails projet
@@ -477,6 +487,7 @@ DELETE /api/projects/:id       # Supprimer projet (auth requis)
 ```
 
 #### Blog
+
 ```
 GET    /api/blog               # Liste des articles
 GET    /api/blog/:slug         # Détails article
@@ -486,6 +497,7 @@ DELETE /api/blog/:id           # Supprimer article (auth requis)
 ```
 
 #### Messages
+
 ```
 GET    /api/messages           # Liste messages (auth requis)
 POST   /api/messages           # Envoyer message (public)
@@ -494,11 +506,13 @@ DELETE /api/messages/:id       # Supprimer message (auth requis)
 ```
 
 #### Upload
+
 ```
 POST   /api/upload             # Upload image Cloudinary (auth requis)
 ```
 
 #### Analytics
+
 ```
 GET    /api/analytics/dashboard  # Stats dashboard (auth requis)
 POST   /api/analytics/event      # Enregistrer événement
@@ -507,6 +521,7 @@ POST   /api/analytics/event      # Enregistrer événement
 ### Authentification
 
 Toutes les routes protégées nécessitent un header :
+
 ```
 Authorization: Bearer <token-jwt>
 ```
