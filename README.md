@@ -28,6 +28,15 @@ Portfolio full-stack moderne avec dashboard d'administration complet pour la ges
 
 Portfolio professionnel avec interface publique élégante et dashboard d'administration complet. Permet la gestion dynamique des projets, articles de blog, messages de contact, et analytics.
 
+**🌐 Site en ligne** : [https://cabrelngamaleu-portfolio.vercel.app/](https://cabrelngamaleu-portfolio.vercel.app/)
+
+### ✅ Tous les services utilisés sont 100% GRATUITS
+
+- **Vercel** : Hébergement frontend + backend serverless (gratuit)
+- **MongoDB Atlas** : Base de données 512 MB (gratuit)
+- **Cloudinary** : Stockage images 25 GB/mois (gratuit)
+- **Gmail SMTP** : Envoi d'emails (gratuit avec compte Gmail)
+
 ### Caractéristiques principales
 
 - ✨ Interface utilisateur moderne avec animations fluides (Framer Motion)
@@ -322,6 +331,40 @@ open coverage/lcov-report/index.html  # Ouvrir le rapport
 ```
 
 ## 🚀 Déploiement
+
+### 🎯 Option Recommandée : Vercel (100% Gratuit)
+
+**Site actuel** : [https://cabrelngamaleu-portfolio.vercel.app/](https://cabrelngamaleu-portfolio.vercel.app/)
+
+Vercel héberge automatiquement le frontend ET le backend (serverless) gratuitement !
+
+#### 📖 Guide Complet de Déploiement Vercel
+
+**Consulte le guide détaillé** : [`VERCEL_DEPLOYMENT.md`](./VERCEL_DEPLOYMENT.md)
+
+#### 🚀 Déploiement Rapide
+
+1. **Configuration automatique** : Le projet est déjà connecté à Vercel
+2. **Push vers GitHub** : Vercel détecte automatiquement et déploie
+3. **Configure les variables d'environnement** sur Vercel Dashboard :
+   - Va sur https://vercel.com/dashboard
+   - Sélectionne ton projet `cabrelngamaleu-portfolio`
+   - Settings → Environment Variables
+   - Ajoute toutes les variables (voir VERCEL_DEPLOYMENT.md)
+
+4. **Services Gratuits à configurer** :
+   - **MongoDB Atlas** (512 MB gratuit) : https://www.mongodb.com/cloud/atlas/register
+   - **Cloudinary** (25 GB/mois gratuit) : https://cloudinary.com/users/register/free
+   - **Gmail SMTP** (gratuit avec ton Gmail existant)
+
+5. **Push et c'est en ligne !**
+   ```bash
+   git push origin main
+   ```
+
+Vercel redéploie automatiquement à chaque push sur `main`. 🎉
+
+---
 
 ### Option 1 : Docker Production
 
