@@ -1,7 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const GlassCard = ({ children, className = '', delay = 0, spotlight = false, padding = true, ...props }) => {
+const GlassCard = ({
+  children,
+  className = '',
+  delay = 0,
+  spotlight = false,
+  padding = true,
+  ...props
+}) => {
   const handleMouseMove = (e) => {
     if (!spotlight) return;
     const rect = e.currentTarget.getBoundingClientRect();

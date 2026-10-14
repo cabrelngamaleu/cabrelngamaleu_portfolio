@@ -80,7 +80,8 @@ const BlogCard = ({ post, delay = 0 }) => {
         )}
 
         <div className="mt-4 flex items-center gap-1.5 text-sm font-medium text-white group-hover:text-designColor transition-colors">
-          Lire la suite <FiArrowUpRight className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          Lire la suite{' '}
+          <FiArrowUpRight className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </div>
       </div>
     </GlassCard>

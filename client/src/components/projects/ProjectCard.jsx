@@ -36,17 +36,31 @@ const ProjectCard = ({ project, featured = false }) => {
               </span>
             )}
             {project.featured && (
-              <span className="px-2.5 py-1 rounded-full bg-designColor text-[#0a0a0b] text-xs font-bold">Featured</span>
+              <span className="px-2.5 py-1 rounded-full bg-designColor text-[#0a0a0b] text-xs font-bold">
+                Featured
+              </span>
             )}
           </div>
           <div className="absolute bottom-3 right-3 flex gap-2 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
             {project.liveUrl && (
-              <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="w-9 h-9 rounded-full bg-white text-black flex items-center justify-center hover:bg-zinc-100">
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="w-9 h-9 rounded-full bg-white text-black flex items-center justify-center hover:bg-zinc-100"
+              >
                 <FiArrowUpRight />
               </a>
             )}
             {project.githubUrl && (
-              <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="w-9 h-9 rounded-full bg-white/15 backdrop-blur border border-white/15 text-white flex items-center justify-center hover:bg-white/25">
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="w-9 h-9 rounded-full bg-white/15 backdrop-blur border border-white/15 text-white flex items-center justify-center hover:bg-white/25"
+              >
                 <FaGithub />
               </a>
             )}
@@ -57,25 +71,46 @@ const ProjectCard = ({ project, featured = false }) => {
         <h3 className="font-titleFont font-semibold text-white text-lg leading-tight group-hover:text-designColor transition-colors line-clamp-1">
           {project.title}
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-textMuted line-clamp-2 flex-1">{project.description}</p>
+        <p className="mt-2 text-sm leading-relaxed text-textMuted line-clamp-2 flex-1">
+          {project.description}
+        </p>
         {visibleTechs.length > 0 && (
           <div className="mt-4 flex flex-wrap gap-1.5">
             {visibleTechs.map((tech, i) => (
-              <span key={i} className="px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/10 text-xs text-textColor">
+              <span
+                key={i}
+                className="px-2.5 py-1 rounded-full bg-white/[0.06] border border-white/10 text-xs text-textColor"
+              >
                 {tech}
               </span>
             ))}
-            {extra > 0 && <span className="px-2.5 py-1 rounded-full bg-white/[0.04] text-xs text-textFaint">+{extra}</span>}
+            {extra > 0 && (
+              <span className="px-2.5 py-1 rounded-full bg-white/[0.04] text-xs text-textFaint">
+                +{extra}
+              </span>
+            )}
           </div>
         )}
         <div className="mt-4 flex gap-2">
           {project.liveUrl && (
-            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-designColor text-[#0a0a0b] text-sm font-semibold hover:bg-designColorHover transition-colors">
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-designColor text-[#0a0a0b] text-sm font-semibold hover:bg-designColorHover transition-colors"
+            >
               Demo <FaExternalLinkAlt className="text-xs" />
             </a>
           )}
           {project.githubUrl && (
-            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/[0.06] border border-white/10 text-white text-sm font-medium hover:bg-white/[0.10] transition-colors">
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-white/[0.06] border border-white/10 text-white text-sm font-medium hover:bg-white/[0.10] transition-colors"
+            >
               <FaGithub /> Code
             </a>
           )}

@@ -83,8 +83,10 @@ module.exports = {
         'card-hover': '0 16px 48px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,0.08) inset',
       },
       backgroundImage: {
-        'mesh-gradient': 'radial-gradient(at 20% 30%, rgba(237,255,32,0.15) 0%, transparent 50%), radial-gradient(at 80% 70%, rgba(120,204,109,0.12) 0%, transparent 50%), radial-gradient(at 50% 50%, rgba(237,255,32,0.05) 0%, transparent 70%)',
-        'grid-pattern': "linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)",
+        'mesh-gradient':
+          'radial-gradient(at 20% 30%, rgba(237,255,32,0.15) 0%, transparent 50%), radial-gradient(at 80% 70%, rgba(120,204,109,0.12) 0%, transparent 50%), radial-gradient(at 50% 50%, rgba(237,255,32,0.05) 0%, transparent 70%)',
+        'grid-pattern':
+          'linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)',
       },
     },
   },

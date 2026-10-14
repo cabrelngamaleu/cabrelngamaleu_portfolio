@@ -36,7 +36,11 @@ const BlogSection = () => {
       <section id="blog" className="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
         <div className="absolute inset-0 -z-10 mesh-bg opacity-30 pointer-events-none" />
         <div className="max-w-7xl mx-auto">
-          <SectionTitle eyebrow="Blog" title="Partages & retours d'expérience" subtitle="Derniers articles, notes de build et réflexions produit." />
+          <SectionTitle
+            eyebrow="Blog"
+            title="Partages & retours d'expérience"
+            subtitle="Derniers articles, notes de build et réflexions produit."
+          />
           <LoadingSpinner size="lg" className="my-20" />
         </div>
       </section>
@@ -47,7 +51,11 @@ const BlogSection = () => {
     <section id="blog" className="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="absolute inset-0 -z-10 mesh-bg opacity-30 pointer-events-none" />
       <div className="max-w-7xl mx-auto">
-        <SectionTitle eyebrow="Blog" title="Partages & retours d'expérience" subtitle="Derniers articles, notes de build et réflexions produit — courts, concrets, actionnables." />
+        <SectionTitle
+          eyebrow="Blog"
+          title="Partages & retours d'expérience"
+          subtitle="Derniers articles, notes de build et réflexions produit — courts, concrets, actionnables."
+        />
 
         {error ? (
           <GlassCard className="text-center py-12">
@@ -56,7 +64,9 @@ const BlogSection = () => {
         ) : posts.length === 0 ? (
           <GlassCard className="text-center py-12">
             <p className="text-textMuted text-lg">Aucun article pour le moment.</p>
-            <p className="text-textFaint text-sm mt-2">Les prochains posts arrivent bientôt — stay tuned.</p>
+            <p className="text-textFaint text-sm mt-2">
+              Les prochains posts arrivent bientôt — stay tuned.
+            </p>
           </GlassCard>
         ) : (
           <>

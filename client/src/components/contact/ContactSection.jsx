@@ -34,13 +34,20 @@ const ContactSection = () => {
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-8 lg:gap-10 items-start">
-          <motion.div initial={{ opacity: 0, x: -16 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="space-y-5">
+          <motion.div
+            initial={{ opacity: 0, x: -16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="space-y-5"
+          >
             <div>
               <h3 className="font-titleFont font-bold text-white text-2xl sm:text-3xl leading-tight mb-3">
                 Parlons de votre <span className="gradient-text-green">prochain projet</span>
               </h3>
               <p className="text-textMuted text-[15px] leading-relaxed">
-                Une idée, une refonte, un besoin d’accélération ? Je réponds vite, clairement, avec un plan d’action.
+                Une idée, une refonte, un besoin d’accélération ? Je réponds vite, clairement, avec
+                un plan d’action.
               </p>
             </div>
             <div className="grid gap-3">
@@ -51,9 +58,16 @@ const ContactSection = () => {
                       <info.icon className="text-white text-lg" />
                     </div>
                     <div className="min-w-0">
-                      <p className="text-xs tracking-wide uppercase font-semibold text-textFaint">{info.label}</p>
+                      <p className="text-xs tracking-wide uppercase font-semibold text-textFaint">
+                        {info.label}
+                      </p>
                       {info.link ? (
-                        <a href={info.link} className="text-white text-sm font-medium hover:text-designColor transition-colors break-all">{info.value}</a>
+                        <a
+                          href={info.link}
+                          className="text-white text-sm font-medium hover:text-designColor transition-colors break-all"
+                        >
+                          {info.value}
+                        </a>
                       ) : (
                         <p className="text-white text-sm font-medium">{info.value}</p>
                       )}
@@ -66,7 +80,10 @@ const ContactSection = () => {
               <div className="flex items-center gap-3">
                 <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse" />
                 <p className="text-sm text-textColor">
-                  <span className="font-semibold text-white">Disponible</span> <span className="text-textMuted">— réponse en &lt; 24h, call de cadrage offerte.</span>
+                  <span className="font-semibold text-white">Disponible</span>{' '}
+                  <span className="text-textMuted">
+                    — réponse en &lt; 24h, call de cadrage offerte.
+                  </span>
                 </p>
               </div>
             </GlassCard>

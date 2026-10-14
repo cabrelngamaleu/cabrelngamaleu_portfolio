@@ -24,7 +24,9 @@ const SectionTitle = ({ eyebrow, title, subtitle, align = 'center' }) => {
         {title}
       </h2>
       {subtitle && (
-        <p className={`mt-3 text-[15px] leading-relaxed text-textMuted max-w-2xl ${isCenter ? 'mx-auto' : ''}`}>
+        <p
+          className={`mt-3 text-[15px] leading-relaxed text-textMuted max-w-2xl ${isCenter ? 'mx-auto' : ''}`}
+        >
           {subtitle}
         </p>
       )}

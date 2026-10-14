@@ -85,9 +85,17 @@ const ProjectsSection = () => {
     <section id="projects" className="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-transparent via-white/[0.02] to-transparent pointer-events-none" />
       <div className="max-w-7xl mx-auto">
-        <SectionTitle eyebrow="Portfolio" title="Projets sélectionnés" subtitle="Une sélection de produits livrés — du MVP au scale. Cliquez pour explorer." />
+        <SectionTitle
+          eyebrow="Portfolio"
+          title="Projets sélectionnés"
+          subtitle="Une sélection de produits livrés — du MVP au scale. Cliquez pour explorer."
+        />
 
-        <ProjectFilter categories={categories} activeCategory={activeCategory} onFilterChange={handleFilterChange} />
+        <ProjectFilter
+          categories={categories}
+          activeCategory={activeCategory}
+          onFilterChange={handleFilterChange}
+        />
 
         {filteredProjects.length === 0 ? (
           <div className="text-center py-20">
@@ -96,7 +104,11 @@ const ProjectsSection = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6 auto-rows-fr">
             {filteredProjects.map((project, idx) => (
-              <ProjectCard key={project._id} project={project} featured={idx === 0 && project.featured && filteredProjects.length >= 5} />
+              <ProjectCard
+                key={project._id}
+                project={project}
+                featured={idx === 0 && project.featured && filteredProjects.length >= 5}
+              />
             ))}
           </div>
         )}

@@ -15,13 +15,27 @@ const SkillsSection = () => {
   return (
     <section id="skills" className="relative py-20 sm:py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <SectionTitle eyebrow="Stack" title="Technologies que je maîtrise" subtitle="Une stack moderne, orientée performance, maintenabilité et expérience développeur." />
+        <SectionTitle
+          eyebrow="Stack"
+          title="Technologies que je maîtrise"
+          subtitle="Une stack moderne, orientée performance, maintenabilité et expérience développeur."
+        />
         <div className="space-y-12">
           {categories.map((category, catIndex) => (
-            <motion.div key={category.key} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55, delay: catIndex * 0.08 }}>
+            <motion.div
+              key={category.key}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55, delay: catIndex * 0.08 }}
+            >
               <div className="flex items-baseline gap-3 mb-6">
-                <h3 className="font-titleFont font-bold text-white text-xl sm:text-2xl">{category.title}</h3>
-                <span className="text-xs tracking-wide text-textFaint hidden sm:inline">{category.hint}</span>
+                <h3 className="font-titleFont font-bold text-white text-xl sm:text-2xl">
+                  {category.title}
+                </h3>
+                <span className="text-xs tracking-wide text-textFaint hidden sm:inline">
+                  {category.hint}
+                </span>
                 <span className="flex-1 h-px bg-white/[0.06] ml-2 hidden sm:block" />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -37,7 +51,17 @@ const SkillsSection = () => {
                           <span className="text-xs font-mono text-textMuted">{skill.level}%</span>
                         </div>
                         <div className="mt-2 h-1.5 rounded-full bg-white/10 overflow-hidden">
-                          <motion.div initial={{ width: 0 }} whileInView={{ width: `${skill.level}%` }} viewport={{ once: true }} transition={{ duration: 0.9, delay: 0.15 + index * 0.04, ease: [0.23, 1, 0.32, 1] }} className="h-full rounded-full bg-gradient-to-r from-designColor to-accent" />
+                          <motion.div
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${skill.level}%` }}
+                            viewport={{ once: true }}
+                            transition={{
+                              duration: 0.9,
+                              delay: 0.15 + index * 0.04,
+                              ease: [0.23, 1, 0.32, 1],
+                            }}
+                            className="h-full rounded-full bg-gradient-to-r from-designColor to-accent"
+                          />
                         </div>
                       </div>
                       <div className="hidden sm:block shrink-0">
